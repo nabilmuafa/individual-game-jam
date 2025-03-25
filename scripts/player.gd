@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var anim = $AnimatedSprite2D
 
 var player_state
-var last_dir
+var last_dir = "e"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -32,7 +32,6 @@ func play_anim(direction):
 	if player_state == "idle":
 		anim.play("idle_"+last_dir)
 	elif player_state == "walking":
-		print("walk")
 		if direction.y == -1:
 			anim.play("walk_n")
 			last_dir = "n"
