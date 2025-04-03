@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://x853d5351pcr"]
 
-[ext_resource type="Script" path="res://Rain.gd" id="1_pljef"]
+[ext_resource type="Script" path="res://scripts/Rain.gd" id="1_pljef"]
 [ext_resource type="AudioStream" uid="uid://c5ivt3dffebbj" path="res://assets/Custom Assets/thunder.mp3" id="2_ys8ij"]
 [ext_resource type="AudioStream" uid="uid://banhxyr5lv8cs" path="res://assets/Custom Assets/rain.mp3" id="3_xidhi"]
 

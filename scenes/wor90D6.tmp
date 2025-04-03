@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://b5q67ide05vpw"]
+[gd_scene load_steps=21 format=4 uid="uid://b5q67ide05vpw"]
 
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_31onf"]
 [ext_resource type="PackedScene" uid="uid://mrl4nnyfj74o" path="res://scenes/Player.tscn" id="1_grqyu"]
@@ -9,9 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cg4aiysn88udh" path="res://assets/Custom Assets/Animated Water.png" id="6_opyi2"]
 [ext_resource type="Texture2D" uid="uid://bonbu1yntftki" path="res://assets/Custom Assets/Animated Beach-Water.png" id="7_5o0fb"]
 [ext_resource type="PackedScene" uid="uid://cucu6moet5f3y" path="res://scenes/Stick.tscn" id="9_0biwo"]
-[ext_resource type="Script" path="res://scenes/InventoryLayer.gd" id="10_egjce"]
 [ext_resource type="PackedScene" uid="uid://ceohccymx3112" path="res://scenes/inventory/inventory.tscn" id="10_rpjw8"]
-[ext_resource type="PackedScene" uid="uid://dnnrxr3vrvodr" path="res://scenes/inventory/hotbar.tscn" id="12_8ctvt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jlrk"]
 texture = ExtResource("1_31onf")
@@ -1679,12 +1677,8 @@ tile_set = SubResource("TileSet_6s8ua")
 
 [node name="InventoryLayer" type="CanvasLayer" parent="."]
 layer = 26
-script = ExtResource("10_egjce")
-
-[node name="Hotbar" parent="InventoryLayer" instance=ExtResource("12_8ctvt")]
 
 [node name="Inventory" parent="InventoryLayer" instance=ExtResource("10_rpjw8")]
-visible = false
 offset_left = 301.0
 offset_top = 100.0
 offset_right = 301.0

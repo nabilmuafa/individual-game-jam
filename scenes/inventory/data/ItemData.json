@@ -1,0 +1,16 @@
+{
+	"Stick": {
+		"ItemCategory": "Weapon",
+		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Stick/Sprite.png",
+		"ItemAttack": 3,
+		"ItemSpeed": 0.5,
+		"StackSize": 1,
+		"Description": "It'll do.",
+	},
+	"Stone": {
+		"ItemCategory": "Resource",
+		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/StoneItem.png",
+		"StackSize": 64,
+		"Description": "Stick and stones makes... Wait, no, no, that's the other game.",
+	},
+}

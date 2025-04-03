@@ -6,9 +6,7 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("called 1")
 	var nextWaitTime = randi() % 15 + 10
-	print(nextWaitTime)
 	timer.set_wait_time(nextWaitTime)
 
 
