@@ -2,9 +2,11 @@ extends Control
 
 const InventorySlot = preload("res://scripts/InventorySlot.gd")
 
+
 @onready var hotbar_slots = $GridContainerHotbar
 @onready var inventory_slots = $GridContainerInventory
 
+var ItemClass = preload("res://scenes/inventory/inventory_item.tscn")
 var holding_item: Node = null
 
 func _ready():
@@ -27,22 +29,52 @@ func initialize_inventory():
 				)
 
 func _on_slot_gui_input(event: InputEvent, slot: InventorySlot):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		if holding_item:
-			if !slot.item:
-				left_click_empty_slot(slot)
-			else:
-				if holding_item.item_name != slot.item.item_name:
-					left_click_occupied_diff_item(slot, event)
+	if event is InputEventMouseButton and event.pressed:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if holding_item:
+				if !slot.item:
+					left_click_empty_slot(slot)
 				else:
-					left_click_occupied_same_item(slot)
-					
-		else:
+					if holding_item.item_name != slot.item.item_name:
+						left_click_occupied_diff_item(slot, event)
+					else:
+						left_click_occupied_same_item(slot)
+						
+			else:
+				if slot.item:
+					PlayerInventory.remove_item(slot)
+					holding_item = slot.item
+					slot.pickFromSlot()
+					holding_item.global_position = get_global_mouse_position()
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			if slot.item:
-				PlayerInventory.remove_item(slot)
-				holding_item = slot.item
-				slot.pickFromSlot()
-				holding_item.global_position = get_global_mouse_position()
+				if holding_item:
+					if holding_item.item_name == slot.item.item_name:
+						var stack_size = int(JsonData.item_data[holding_item.item_name]["StackSize"])
+						if holding_item.item_quantity < stack_size and slot.item.item_quantity >= 1:
+							holding_item.add_item_quantity(1)
+							slot.item.dec_item_quantity(1)
+							PlayerInventory.dec_item_quantity(slot, 1)
+						if slot.item.item_quantity <= 0:
+							PlayerInventory.remove_item(slot)
+							slot.removeFromSlot()
+				else:
+					var item_name = slot.item.item_name
+					var cur_quantity = slot.item.item_quantity
+					if cur_quantity >= 1:
+						var new_item = ItemClass.instantiate()
+						new_item.set_item(item_name, 1, JsonData.item_data[item_name]["ItemTexture"])
+						new_item.mouse_filter = Control.MOUSE_FILTER_IGNORE
+						add_child(new_item)
+						new_item.global_position = get_global_mouse_position()
+						holding_item = new_item
+						
+						slot.item.dec_item_quantity(1)
+						PlayerInventory.dec_item_quantity(slot, 1)
+						
+						if slot.item.item_quantity <= 0:
+							PlayerInventory.remove_item(slot)
+							slot.removeFromSlot()
 
 func left_click_empty_slot(slot: InventorySlot):
 	PlayerInventory.add_item_to_empty_slot(holding_item, slot)
@@ -69,7 +101,7 @@ func left_click_occupied_same_item(slot: InventorySlot):
 	else:
 		PlayerInventory.add_item_quantity(slot, able_to_add)
 		slot.item.add_item_quantity(able_to_add)
-		holding_item.decrease_item_quantity(able_to_add)
+		holding_item.dec_item_quantity(able_to_add)
 
 func _process(_delta):
 	if holding_item:

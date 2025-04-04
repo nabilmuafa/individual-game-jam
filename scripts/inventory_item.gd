@@ -4,10 +4,7 @@ var item_name
 var item_quantity
 
 func _ready() -> void:
-	if randi() % 2 == 0:
-		self.texture = load("res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Stick/Sprite.png")
-	else:
-		self.texture = load("res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Axe/Sprite.png")
+	pass
 
 func set_item(nm, qt, text):
 	item_name = nm
@@ -19,12 +16,12 @@ func set_item(nm, qt, text):
 		$Label.visible = false
 	else:
 		$Label.visible = true
-		$Label.text = String(item_quantity)
+		$Label.text = str(item_quantity)
 
 func add_item_quantity(amount_to_add):
 	item_quantity += amount_to_add
-	$Label.text = String(item_quantity)
+	$Label.text = str(item_quantity)
 	
 func dec_item_quantity(amount_to_add):
 	item_quantity -= amount_to_add
-	$Label.text = String(item_quantity)
+	$Label.text = str(item_quantity)

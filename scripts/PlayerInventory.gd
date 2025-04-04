@@ -59,6 +59,12 @@ func add_item_quantity(slot: InventorySlot, quantity_to_add: int):
 	inventory[slot.slot_index][1] += quantity_to_add
 	emit_signal("hotbar_updated")
 	
+func dec_item_quantity(slot: InventorySlot, quantity: int):
+	inventory[slot.slot_index][1] -= quantity
+	if inventory[slot.slot_index][1] <= 0:
+		inventory.erase(slot.slot_index)
+	emit_signal("hotbar_updated")
+	
 func active_item_scroll_up():
 	if active_item_slot == 0:
 		active_item_slot = (HOTBAR_SLOTS - 1)
