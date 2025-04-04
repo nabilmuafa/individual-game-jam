@@ -1,15 +1,17 @@
 extends Node
 
+signal active_item_updated
+signal hotbar_updated
+
 const INVENTORY_SLOTS = 24
+const HOTBAR_SLOTS = 6
 const InventorySlot = preload("res://scripts/InventorySlot.gd")
 const ItemClass = preload("res://scripts/inventory_item.gd")
 
 var inventory = {
 }
 
-var hotbar = {
-	0: ["Stick", 1]
-}
+var active_item_slot = 0
 
 func add_item(item_name, item_quantity):
 	for item in inventory:
@@ -19,6 +21,7 @@ func add_item(item_name, item_quantity):
 			if able_to_add >= item_quantity:
 				inventory[item][1] += item_quantity
 				update_slot_visual(item, inventory[item])
+				emit_signal("hotbar_updated")
 				return
 			else:
 				inventory[item][1] += able_to_add
@@ -29,12 +32,17 @@ func add_item(item_name, item_quantity):
 		if inventory.has(i) == false:
 			inventory[i] = [item_name, item_quantity]
 			update_slot_visual(i, inventory[i])
+			emit_signal("hotbar_updated")
 			return
 			
 func update_slot_visual(slot_index, item_data):
 	var item_name = item_data[0]
 	var item_quantity = item_data[1]
-	var slot = get_tree().root.get_node("/root/world/InventoryLayer/Inventory/GridContainer/Panel" + str(slot_index + 1))
+	var slot = null
+	if slot_index < 6:
+		slot = get_tree().root.get_node("/root/world/InventoryLayer/Inventory/GridContainerHotbar/Panel" + str(slot_index + 1))
+	else:
+		slot = get_tree().root.get_node("/root/world/InventoryLayer/Inventory/GridContainerInventory/Panel" + str(slot_index + 1))
 	if slot.item:
 		slot.item.set_item(item_name, item_quantity, JsonData.item_data[item_name]["ItemTexture"])
 	else:
@@ -45,6 +53,19 @@ func remove_item(slot: InventorySlot):
 			
 func add_item_to_empty_slot(item: ItemClass, slot: InventorySlot):
 	inventory[slot.slot_index] = [item.item_name, item.item_quantity]
+	emit_signal("hotbar_updated")
 	
 func add_item_quantity(slot: InventorySlot, quantity_to_add: int):
 	inventory[slot.slot_index][1] += quantity_to_add
+	emit_signal("hotbar_updated")
+	
+func active_item_scroll_up():
+	if active_item_slot == 0:
+		active_item_slot = (HOTBAR_SLOTS - 1)
+	else:
+		active_item_slot -= 1
+	emit_signal("active_item_updated")
+	
+func active_item_scroll_down():
+	active_item_slot = (active_item_slot + 1) % HOTBAR_SLOTS
+	emit_signal("active_item_updated")

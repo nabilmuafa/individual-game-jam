@@ -2,19 +2,22 @@ extends Control
 
 const InventorySlot = preload("res://scripts/InventorySlot.gd")
 
-@onready var inventory_slots = $GridContainer
+@onready var hotbar_slots = $GridContainerHotbar
+@onready var inventory_slots = $GridContainerInventory
+
 var holding_item: Node = null
 
 func _ready():
-	var slots = inventory_slots.get_children()
+	var slots = hotbar_slots.get_children() + inventory_slots.get_children()
 	for i in range(slots.size()):
 		slots[i].mouse_filter = Control.MOUSE_FILTER_PASS
 		slots[i].gui_input.connect(_on_slot_gui_input.bind(slots[i]))
 		slots[i].slot_index = i
+		slots[i].slot_type = InventorySlot.SlotType.INVENTORY
 	initialize_inventory()
 
 func initialize_inventory():
-	var slots = inventory_slots.get_children()
+	var slots = hotbar_slots.get_children() + inventory_slots.get_children()
 	for i in range(slots.size()):
 		if PlayerInventory.inventory.has(i):
 			slots[i].initialize_item(
@@ -32,7 +35,7 @@ func _on_slot_gui_input(event: InputEvent, slot: InventorySlot):
 				if holding_item.item_name != slot.item.item_name:
 					left_click_occupied_diff_item(slot, event)
 				else:
-					left_click_occupied_same_item(slot, event)
+					left_click_occupied_same_item(slot)
 					
 		else:
 			if slot.item:
@@ -55,7 +58,7 @@ func left_click_occupied_diff_item(slot: InventorySlot, event: InputEventMouseBu
 	slot.putToSlot(holding_item)
 	holding_item = temp_item
 	
-func left_click_occupied_same_item(slot: InventorySlot, event: InputEventMouseButton):
+func left_click_occupied_same_item(slot: InventorySlot):
 	var stack_size = int(JsonData.item_data[slot.item.item_name]["StackSize"])
 	var able_to_add = stack_size - slot.item.item_quantity
 	if able_to_add >= holding_item.item_quantity:
@@ -68,7 +71,7 @@ func left_click_occupied_same_item(slot: InventorySlot, event: InputEventMouseBu
 		slot.item.add_item_quantity(able_to_add)
 		holding_item.decrease_item_quantity(able_to_add)
 
-func _process(delta):
+func _process(_delta):
 	if holding_item:
 		holding_item.set_global_position(get_global_mouse_position())
 		holding_item.release_focus()

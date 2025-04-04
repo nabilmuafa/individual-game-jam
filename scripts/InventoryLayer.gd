@@ -7,7 +7,12 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		$Inventory.visible = !$Inventory.visible
 		$Inventory.initialize_inventory()
+		
+	if Input.is_action_just_released("scroll_up"):
+		PlayerInventory.active_item_scroll_up()
+	elif Input.is_action_just_released("scroll_down"):
+		PlayerInventory.active_item_scroll_down()
