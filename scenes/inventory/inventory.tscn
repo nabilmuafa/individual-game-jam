@@ -10,26 +10,46 @@ texture = ExtResource("2_sgsbe")
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_1py41")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-offset_right = 144.0
-offset_bottom = 105.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -216.0
+offset_right = -144.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(4, 4)
 texture = ExtResource("2_y20ff")
 
 [node name="GridContainerHotbar" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 76.0
-offset_right = 584.0
-offset_bottom = 412.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -140.0
+offset_right = 232.0
+offset_bottom = -76.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 6
@@ -73,11 +93,18 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_bmqga")
 script = ExtResource("3_2038i")
 
 [node name="GridContainerInventory" type="GridContainer" parent="."]
-layout_mode = 2
-offset_left = 56.0
-offset_top = 168.0
-offset_right = 520.0
-offset_bottom = 1388.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -232.0
+offset_top = -48.0
+offset_right = 232.0
+offset_bottom = 176.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 6
