@@ -12,6 +12,7 @@ var inventory = {
 }
 
 var active_item_slot = 0
+var inventory_layer: Node = null
 
 func add_item(item_name, item_quantity):
 	for item in inventory:
@@ -36,13 +37,17 @@ func add_item(item_name, item_quantity):
 			return
 			
 func update_slot_visual(slot_index, item_data):
-	var item_name = item_data[0]
-	var item_quantity = item_data[1]
+	if inventory_layer == null:
+		return
+		
+	var item_name: String = item_data[0]
+	var item_quantity: int = item_data[1]
 	var slot = null
-	if slot_index < 6:
-		slot = get_tree().root.get_node("/root/world/InventoryLayer/Inventory/GridContainerHotbar/Panel" + str(slot_index + 1))
-	else:
-		slot = get_tree().root.get_node("/root/world/InventoryLayer/Inventory/GridContainerInventory/Panel" + str(slot_index + 1))
+	var slot_path = "Inventory/GridContainerHotbar/Panel" + str(slot_index + 1) \
+	if slot_index < 6 else "Inventory/GridContainerInventory/Panel" + str(slot_index + 1)
+
+	slot = inventory_layer.get_node(slot_path)
+	
 	if slot.item:
 		slot.item.set_item(item_name, item_quantity, JsonData.item_data[item_name]["ItemTexture"])
 	else:

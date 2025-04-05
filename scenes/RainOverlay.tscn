@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://x853d5351pcr"]
+[gd_scene load_steps=15 format=3 uid="uid://x853d5351pcr"]
 
 [ext_resource type="Script" path="res://scripts/Rain.gd" id="1_pljef"]
 [ext_resource type="AudioStream" uid="uid://c5ivt3dffebbj" path="res://assets/Custom Assets/thunder.mp3" id="2_ys8ij"]
-[ext_resource type="AudioStream" uid="uid://banhxyr5lv8cs" path="res://assets/Custom Assets/rain.mp3" id="3_xidhi"]
 
 [sub_resource type="Animation" id="Animation_nqr7c"]
 length = 0.001
@@ -139,11 +138,6 @@ autostart = true
 
 [node name="AudioStreamPlayerThunder" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ys8ij")
-
-[node name="AudioStreamPlayerRain" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_xidhi")
-volume_db = -12.69
-autoplay = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(582, 168)

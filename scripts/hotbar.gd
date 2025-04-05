@@ -23,7 +23,8 @@ func initialize_hotbar():
 				PlayerInventory.inventory[i][0],
 				PlayerInventory.inventory[i][1],
 				JsonData.item_data[PlayerInventory.inventory[i][0]]["ItemTexture"]
-				)
+			)
+		slots[i].refresh_style()
 				
 func update_active_item_label():
 	if slots[PlayerInventory.active_item_slot].item != null:

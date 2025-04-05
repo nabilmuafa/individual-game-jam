@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://p3bogahm3kvc"]
+
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_ytqp7"]
+[ext_resource type="AudioStream" uid="uid://banhxyr5lv8cs" path="res://assets/Custom Assets/rain.mp3" id="2_5k1ge"]
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_ytqp7")
+
+[node name="AudioStreamPlayerRain" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
+stream = ExtResource("2_5k1ge")
+volume_db = -12.69
+autoplay = true
