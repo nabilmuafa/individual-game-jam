@@ -13,4 +13,10 @@
 		"StackSize": 64,
 		"Description": "Stick and stones makes... Wait, no, no, that's the other game.",
 	},
+	"Wood": {
+		"ItemCategory": "Resource",
+		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/WoodItem.png",
+		"StackSize": 64,
+		"Description": "The most basic resource.",
+	},
 }
