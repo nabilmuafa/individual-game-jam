@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dvlakvh1lotyg" path="res://assets/Custom Assets/Craft_Item_Button_Hover.png" id="11_eetxb"]
 [ext_resource type="FontFile" uid="uid://cwp6uh1c8a8yg" path="res://assets/Fonts/managore-m5x7.ttf" id="12_catwk"]
 [ext_resource type="Texture2D" uid="uid://bwh51r2uxp8lc" path="res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Club/Sprite.png" id="13_2juoo"]
-[ext_resource type="PackedScene" uid="uid://b316w28m6wclr" path="res://scenes/inventory/inventory_item_display.tscn" id="14_b81jt"]
+[ext_resource type="Texture2D" uid="uid://c2dq54w35277r" path="res://assets/Custom Assets/Craft_Item_Button_Disabled.png" id="13_hoj1d"]
 [ext_resource type="Texture2D" uid="uid://b3wygvegsdeb3" path="res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword2/Sprite.png" id="14_cckan"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bmqga"]
@@ -248,6 +248,7 @@ texture_pressed = ExtResource("6_ry1wu")
 texture_hover = ExtResource("6_q6kxw")
 
 [node name="CraftingMenu" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -259.0
 offset_top = -140.0
@@ -283,14 +284,16 @@ size_flags_vertical = 4
 texture = ExtResource("9_6rmmt")
 stretch_mode = 2
 
-[node name="TextureButton2" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer"]
+[node name="PickaxeCraftButton" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 4
+disabled = true
 texture_normal = ExtResource("10_ithr5")
 texture_pressed = ExtResource("11_1yfdw")
 texture_hover = ExtResource("11_eetxb")
+texture_disabled = ExtResource("13_hoj1d")
 
-[node name="Label" type="Label" parent="CraftingMenu/GridContainer/MarginContainer/TextureButton2"]
+[node name="Label" type="Label" parent="CraftingMenu/GridContainer/MarginContainer/PickaxeCraftButton"]
 layout_mode = 2
 offset_left = 7.25
 offset_top = 1.0
@@ -302,15 +305,11 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("12_catwk")
 text = "Craft"
 
-[node name="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer" instance=ExtResource("14_b81jt")]
-layout_mode = 2
-item_quantity = 1
-
 [node name="MarginContainer2" type="HBoxContainer" parent="CraftingMenu/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="TextureButton3" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer2"]
+[node name="ClubImage" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer2"]
 custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -318,14 +317,16 @@ size_flags_vertical = 4
 texture = ExtResource("13_2juoo")
 stretch_mode = 3
 
-[node name="TextureButton4" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer2"]
+[node name="ClubCraftButton" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+disabled = true
 texture_normal = ExtResource("10_ithr5")
 texture_pressed = ExtResource("11_1yfdw")
 texture_hover = ExtResource("11_eetxb")
+texture_disabled = ExtResource("13_hoj1d")
 
-[node name="Label2" type="Label" parent="CraftingMenu/GridContainer/MarginContainer2/TextureButton4"]
+[node name="Label2" type="Label" parent="CraftingMenu/GridContainer/MarginContainer2/ClubCraftButton"]
 layout_mode = 2
 offset_left = 7.25
 offset_top = 0.75
@@ -339,7 +340,7 @@ text = "Craft"
 [node name="MarginContainer3" type="HBoxContainer" parent="CraftingMenu/GridContainer"]
 layout_mode = 2
 
-[node name="TextureButton5" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer3"]
+[node name="SwordImage" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer3"]
 custom_minimum_size = Vector2(12, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -347,14 +348,16 @@ size_flags_vertical = 4
 texture = ExtResource("14_cckan")
 stretch_mode = 3
 
-[node name="TextureButton6" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer3"]
+[node name="SwordCraftButton" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer3"]
 layout_mode = 2
 size_flags_vertical = 4
+disabled = true
 texture_normal = ExtResource("10_ithr5")
 texture_pressed = ExtResource("11_1yfdw")
 texture_hover = ExtResource("11_eetxb")
+texture_disabled = ExtResource("13_hoj1d")
 
-[node name="Label3" type="Label" parent="CraftingMenu/GridContainer/MarginContainer3/TextureButton6"]
+[node name="Label3" type="Label" parent="CraftingMenu/GridContainer/MarginContainer3/SwordCraftButton"]
 layout_mode = 2
 offset_left = 7.0
 offset_top = 1.0
@@ -366,3 +369,6 @@ theme_override_fonts/font = ExtResource("12_catwk")
 text = "Craft"
 
 [connection signal="pressed" from="CraftingButton" to="." method="_on_crafting_button_pressed"]
+[connection signal="pressed" from="CraftingMenu/GridContainer/MarginContainer/PickaxeCraftButton" to="." method="_on_pickaxe_craft_button_pressed"]
+[connection signal="pressed" from="CraftingMenu/GridContainer/MarginContainer2/ClubCraftButton" to="." method="_on_club_craft_button_pressed"]
+[connection signal="pressed" from="CraftingMenu/GridContainer/MarginContainer3/SwordCraftButton" to="." method="_on_sword_craft_button_pressed"]

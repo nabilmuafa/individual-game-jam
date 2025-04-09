@@ -9,6 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
+		print(PlayerInventory.inventory)
 		$Inventory.visible = !$Inventory.visible
 		$Inventory.initialize_inventory()
 		

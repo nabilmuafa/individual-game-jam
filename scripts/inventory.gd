@@ -5,6 +5,13 @@ const InventorySlot = preload("res://scripts/InventorySlot.gd")
 
 @onready var hotbar_slots = $GridContainerHotbar
 @onready var inventory_slots = $GridContainerInventory
+@onready var pickaxe_craft_button = $CraftingMenu/GridContainer/MarginContainer/PickaxeCraftButton
+@onready var club_craft_button = $CraftingMenu/GridContainer/MarginContainer2/ClubCraftButton
+@onready var sword_craft_button = $CraftingMenu/GridContainer/MarginContainer3/SwordCraftButton
+
+var canCraftPickaxe = false
+var canCraftClub = false
+var canCraftSword = false
 
 var ItemClass = preload("res://scenes/inventory/inventory_item.tscn")
 var holding_item: Node = null
@@ -107,7 +114,81 @@ func _process(_delta):
 	if holding_item:
 		holding_item.set_global_position(get_global_mouse_position())
 		holding_item.release_focus()
+		
+	check_craftability()
 
+func check_craftability():
+	var isStickTaken = false
+	var stoneAmount = 0
+	var woodAmount = 0
+	var metalAmount = 0
+	
+	for item in PlayerInventory.inventory:
+		if PlayerInventory.inventory[item][0] == "Stick":
+			isStickTaken = true
+		if PlayerInventory.inventory[item][0] == "Wood":
+			woodAmount += PlayerInventory.inventory[item][1]
+		if PlayerInventory.inventory[item][0] == "Stone":
+			stoneAmount += PlayerInventory.inventory[item][1]
+		if PlayerInventory.inventory[item][0] == "Metal":
+			metalAmount += PlayerInventory.inventory[item][1]
+	
+	canCraftPickaxe = (stoneAmount >= 3) and (woodAmount >= 4)
+	canCraftClub = isStickTaken and (woodAmount >= 8)
+	canCraftSword = isStickTaken and (stoneAmount >= 2) and (metalAmount >= 4)
+	
+	pickaxe_craft_button.disabled = !canCraftPickaxe
+	club_craft_button.disabled = !canCraftClub
+	sword_craft_button.disabled = !canCraftSword
+
+
+func craft_item(item_name, required):
+	var slots = hotbar_slots.get_children() + inventory_slots.get_children()
+
+	for slot in slots:
+		if slot.item == null:
+			continue
+
+		var item = slot.item
+		var name = item.item_name
+		if name in required and required[name] > 0:
+			var to_remove = min(item.item_quantity, required[name])
+			required[name] -= to_remove
+
+			if item.item_quantity <= to_remove:
+				slot.removeFromSlot()
+				PlayerInventory.remove_item(slot)
+			else:
+				item.dec_item_quantity(to_remove)
+				PlayerInventory.dec_item_quantity(slot, to_remove)
+
+	var crafted = true
+	for key in required:
+		if required[key] > 0:
+			crafted = false
+			break
+
+	if crafted:
+		for i in range(slots.size()):
+			if not PlayerInventory.inventory.has(i):
+				PlayerInventory.add_item(item_name, 1)
+				return
+				
 
 func _on_crafting_button_pressed() -> void:
 	$CraftingMenu.visible = !$CraftingMenu.visible
+
+
+func _on_pickaxe_craft_button_pressed() -> void:
+	var required = {"Stone": 3, "Wood": 4}
+	craft_item("Pickaxe", required)
+
+
+func _on_club_craft_button_pressed() -> void:
+	var required = {"Stick": 1, "Wood": 8}
+	craft_item("Club", required)
+
+
+func _on_sword_craft_button_pressed() -> void:
+	var required = {"Stick": 1, "Stone": 2, "Metal": 4}
+	craft_item("Sword", required)
