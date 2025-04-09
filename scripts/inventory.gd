@@ -107,3 +107,7 @@ func _process(_delta):
 	if holding_item:
 		holding_item.set_global_position(get_global_mouse_position())
 		holding_item.release_focus()
+
+
+func _on_crafting_button_pressed() -> void:
+	$CraftingMenu.visible = !$CraftingMenu.visible

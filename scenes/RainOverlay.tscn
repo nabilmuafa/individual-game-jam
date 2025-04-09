@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://x853d5351pcr"]
+[gd_scene load_steps=14 format=3 uid="uid://x853d5351pcr"]
 
 [ext_resource type="Script" path="res://scripts/Rain.gd" id="1_pljef"]
-[ext_resource type="AudioStream" uid="uid://c5ivt3dffebbj" path="res://assets/Custom Assets/thunder.mp3" id="2_ys8ij"]
 
 [sub_resource type="Animation" id="Animation_nqr7c"]
 length = 0.001
@@ -32,18 +31,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 0.499999, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AudioStreamPlayerThunder:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.86667, 6),
-"transitions": PackedFloat32Array(1, 0.784585, 1.41421),
-"update": 0,
-"values": [0.0, 0.0, -37.797]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kwfjl"]
@@ -123,9 +110,6 @@ offset_bottom = 1077.0
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 autostart = true
-
-[node name="AudioStreamPlayerThunder" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_ys8ij")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(582, 168)

@@ -1,9 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://ceohccymx3112"]
+[gd_scene load_steps=18 format=3 uid="uid://ceohccymx3112"]
 
 [ext_resource type="Script" path="res://scripts/inventory.gd" id="1_1py41"]
 [ext_resource type="Texture2D" uid="uid://b5r3e4qjks1cv" path="res://assets/Custom Assets/InventorySlot.png" id="2_sgsbe"]
 [ext_resource type="Texture2D" uid="uid://djgv8s8ijje8d" path="res://assets/Custom Assets/InventoryBackgroundWithHotbar.png" id="2_y20ff"]
 [ext_resource type="Script" path="res://scripts/InventorySlot.gd" id="3_2038i"]
+[ext_resource type="Texture2D" uid="uid://b38bluuxxwjen" path="res://assets/Custom Assets/Crafting_Button.png" id="5_skfjh"]
+[ext_resource type="Texture2D" uid="uid://c402nl5ha3ck8" path="res://assets/Custom Assets/Crafting_Button_Hover.png" id="6_q6kxw"]
+[ext_resource type="Texture2D" uid="uid://bmf8onmno0jna" path="res://assets/Custom Assets/Crafting_Button_Pressed.png" id="6_ry1wu"]
+[ext_resource type="Texture2D" uid="uid://dgf0qmuek5s3n" path="res://assets/Custom Assets/Crafting_Menu.png" id="8_10ms5"]
+[ext_resource type="Texture2D" uid="uid://btk3ej4cukl17" path="res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Pickaxe/Sprite.png" id="9_6rmmt"]
+[ext_resource type="Texture2D" uid="uid://1wjucen64fuf" path="res://assets/Custom Assets/Craft_Item_Button.png" id="10_ithr5"]
+[ext_resource type="Texture2D" uid="uid://da21oaluswjm7" path="res://assets/Custom Assets/Craft_Item_Button_Pressed.png" id="11_1yfdw"]
+[ext_resource type="Texture2D" uid="uid://dvlakvh1lotyg" path="res://assets/Custom Assets/Craft_Item_Button_Hover.png" id="11_eetxb"]
+[ext_resource type="FontFile" uid="uid://cwp6uh1c8a8yg" path="res://assets/Fonts/managore-m5x7.ttf" id="12_catwk"]
+[ext_resource type="Texture2D" uid="uid://bwh51r2uxp8lc" path="res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Club/Sprite.png" id="13_2juoo"]
+[ext_resource type="PackedScene" uid="uid://b316w28m6wclr" path="res://scenes/inventory/inventory_item_display.tscn" id="14_b81jt"]
+[ext_resource type="Texture2D" uid="uid://b3wygvegsdeb3" path="res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword2/Sprite.png" id="14_cckan"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bmqga"]
 texture = ExtResource("2_sgsbe")
@@ -21,7 +33,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_1py41")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="InventoryMenu" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -216,3 +228,141 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bmqga")
 script = ExtResource("3_2038i")
+
+[node name="CraftingButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 296.0
+offset_top = -144.0
+offset_right = 319.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture_normal = ExtResource("5_skfjh")
+texture_pressed = ExtResource("6_ry1wu")
+texture_hover = ExtResource("6_q6kxw")
+
+[node name="CraftingMenu" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -259.0
+offset_top = -140.0
+offset_right = -129.0
+offset_bottom = -71.0
+scale = Vector2(4, 4)
+texture = ExtResource("8_10ms5")
+
+[node name="GridContainer" type="GridContainer" parent="CraftingMenu"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -28.0
+offset_right = -8.0
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 50
+theme_override_constants/v_separation = 6
+
+[node name="MarginContainer" type="HBoxContainer" parent="CraftingMenu/GridContainer"]
+layout_direction = 2
+layout_mode = 2
+alignment = 1
+
+[node name="PickaxeImage" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("9_6rmmt")
+stretch_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("10_ithr5")
+texture_pressed = ExtResource("11_1yfdw")
+texture_hover = ExtResource("11_eetxb")
+
+[node name="Label" type="Label" parent="CraftingMenu/GridContainer/MarginContainer/TextureButton2"]
+layout_mode = 2
+offset_left = 7.25
+offset_top = 1.0
+offset_right = 34.25
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("12_catwk")
+text = "Craft"
+
+[node name="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer" instance=ExtResource("14_b81jt")]
+layout_mode = 2
+item_quantity = 1
+
+[node name="MarginContainer2" type="HBoxContainer" parent="CraftingMenu/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureButton3" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer2"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_2juoo")
+stretch_mode = 3
+
+[node name="TextureButton4" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("10_ithr5")
+texture_pressed = ExtResource("11_1yfdw")
+texture_hover = ExtResource("11_eetxb")
+
+[node name="Label2" type="Label" parent="CraftingMenu/GridContainer/MarginContainer2/TextureButton4"]
+layout_mode = 2
+offset_left = 7.25
+offset_top = 0.75
+offset_right = 34.25
+offset_bottom = 13.75
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_catwk")
+text = "Craft"
+
+[node name="MarginContainer3" type="HBoxContainer" parent="CraftingMenu/GridContainer"]
+layout_mode = 2
+
+[node name="TextureButton5" type="TextureRect" parent="CraftingMenu/GridContainer/MarginContainer3"]
+custom_minimum_size = Vector2(12, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("14_cckan")
+stretch_mode = 3
+
+[node name="TextureButton6" type="TextureButton" parent="CraftingMenu/GridContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_vertical = 4
+texture_normal = ExtResource("10_ithr5")
+texture_pressed = ExtResource("11_1yfdw")
+texture_hover = ExtResource("11_eetxb")
+
+[node name="Label3" type="Label" parent="CraftingMenu/GridContainer/MarginContainer3/TextureButton6"]
+layout_mode = 2
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 14.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_catwk")
+text = "Craft"
+
+[connection signal="pressed" from="CraftingButton" to="." method="_on_crafting_button_pressed"]
