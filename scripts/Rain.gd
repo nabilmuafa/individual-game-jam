@@ -2,7 +2,7 @@ extends CanvasLayer
 
 @onready var anim = $AnimationPlayer
 @onready var timer = $Timer
-@onready var thunderAudio = $AudioStreamPlayerThunder
+@onready var thunderAudio = GameManager.thunderAudio
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

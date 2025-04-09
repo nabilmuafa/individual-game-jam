@@ -3,6 +3,7 @@ extends Node
 @export var x_pos: float = 0.0;
 @export var y_pos: float = 0.0;
 @export var last_dir = "e"
+@onready var thunderAudio = $AudioStreamPlayerThunder
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

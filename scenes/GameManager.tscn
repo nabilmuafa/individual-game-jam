@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://p3bogahm3kvc"]
+[gd_scene load_steps=4 format=3 uid="uid://p3bogahm3kvc"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_ytqp7"]
 [ext_resource type="AudioStream" uid="uid://banhxyr5lv8cs" path="res://assets/Custom Assets/rain.mp3" id="2_5k1ge"]
+[ext_resource type="AudioStream" uid="uid://cuy7i46p1oa1c" path="res://assets/Custom Assets/Thunder_Edit.wav" id="3_3utnf"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_ytqp7")
@@ -11,3 +12,7 @@ process_mode = 3
 stream = ExtResource("2_5k1ge")
 volume_db = -12.69
 autoplay = true
+
+[node name="AudioStreamPlayerThunder" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3utnf")
+attenuation = 2.46229
