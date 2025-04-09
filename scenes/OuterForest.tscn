@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=4 uid="uid://dlns838fsu2s5"]
+[gd_scene load_steps=15 format=4 uid="uid://dlns838fsu2s5"]
 
 [ext_resource type="Script" path="res://scripts/OuterForest.gd" id="1_df8vk"]
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_hiayx"]
 [ext_resource type="PackedScene" uid="uid://mrl4nnyfj74o" path="res://scenes/Player.tscn" id="2_x617p"]
 [ext_resource type="PackedScene" uid="uid://dygdec12vvp3f" path="res://scenes/PlayerCamera.tscn" id="3_6qe6c"]
 [ext_resource type="Texture2D" uid="uid://clf5gptfnr6e1" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetNature.png" id="3_jdns4"]
+[ext_resource type="PackedScene" uid="uid://p3bjbrtpifa7" path="res://scenes/items/StoneMineable.tscn" id="5_a3nhu"]
 [ext_resource type="PackedScene" uid="uid://cqq0iaxfjnsry" path="res://scenes/items/Wood.tscn" id="6_n7gk1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tdxu4"]
@@ -1317,6 +1318,9 @@ max_take = 3
 position = Vector2(200, 201)
 item_name = "Wood"
 max_take = 3
+
+[node name="StoneMineable" parent="." instance=ExtResource("5_a3nhu")]
+position = Vector2(260, -50)
 
 [node name="Player" parent="." instance=ExtResource("2_x617p")]
 position = Vector2(-150, 20)
