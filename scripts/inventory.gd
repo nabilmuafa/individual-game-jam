@@ -150,10 +150,10 @@ func craft_item(item_name, required):
 			continue
 
 		var item = slot.item
-		var name = item.item_name
-		if name in required and required[name] > 0:
-			var to_remove = min(item.item_quantity, required[name])
-			required[name] -= to_remove
+		var res_name = item.item_name
+		if res_name in required and required[res_name] > 0:
+			var to_remove = min(item.item_quantity, required[res_name])
+			required[res_name] -= to_remove
 
 			if item.item_quantity <= to_remove:
 				slot.removeFromSlot()

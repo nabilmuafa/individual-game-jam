@@ -76,9 +76,9 @@ func _on_attack_anim_animation_finished() -> void:
 
 func deal_with_damage():
 	GameManager.player_attack_cooldown = true
-	anim.material.set("shader_param/flash_strength", 0.5)
+	anim.material.set_shader_parameter("flash_strength", 0.5)
 	await get_tree().create_timer(0.1).timeout
-	anim.material.set("shader_param/flash_strength", 0.0)
+	anim.material.set_shader_parameter("flash_strength", 0.0)
 	var damage = 15
 	if PlayerInventory.inventory.has(PlayerInventory.active_item_slot):
 		var item_held = PlayerInventory.inventory[PlayerInventory.active_item_slot][0]

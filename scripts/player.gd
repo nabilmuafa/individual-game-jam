@@ -4,6 +4,8 @@ extends CharacterBody2D
 @onready var anim = $AnimatedSprite2D
 @onready var attack_anim = $AttackSweep
 
+signal healthChanged
+
 var player_state
 var is_attacking = false
 var last_dir = "e"
@@ -15,7 +17,7 @@ var player_alive = true
 func _ready() -> void:
 	health = GameManager.player_health
 	last_dir = GameManager.last_dir
-	PlayerInventory.inventory_layer = $InventoryLayer
+	PlayerInventory.inventory_layer = $UILayer
 
 
 func _physics_process(_delta: float) -> void:
@@ -81,6 +83,8 @@ func start_attack():
 func enemy_attack():
 	health -= 20
 	GameManager.player_health -= 20
+	emit_signal("healthChanged")
+	
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:
