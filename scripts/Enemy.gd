@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var item_dropped: String
 @export var speed = 50
+@export var entity_id: int
+
 @onready var anim = $AnimatedSprite2D
 @onready var attack_anim = $AttackAnim
 
@@ -20,6 +22,7 @@ func _ready() -> void:
 	red_flash = ShaderMaterial.new()
 	red_flash.shader = preload("res://scripts/RedFlash.gdshader")
 	anim.material = red_flash
+	entity_id = GameManager.get_runtime_id()
 	
 
 func _physics_process(_delta: float) -> void:
@@ -96,6 +99,13 @@ func deal_with_damage():
 			item_dropped_node.max_take = 3
 			item_dropped_node.item_id = GameManager.get_runtime_id()
 			get_parent().get_node("Items").add_child(item_dropped_node)
+			GameManager.dropped_items[item_dropped_node.item_id] = {
+				"item_id": item_dropped_node.item_id,
+				"scene": get_parent().name,
+				"item_name": item_dropped,
+				"position": item_dropped_node.position,
+				"max_take": item_dropped_node.max_take,
+			}
 		self.queue_free()
 
 

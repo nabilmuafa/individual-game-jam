@@ -6,6 +6,8 @@ extends Node
 @onready var thunderAudio = $AudioStreamPlayerThunder
 
 var takenID = {}
+var entityID = {}
+var dropped_items = {}
 var player_health: int
 var player_current_attack = false
 var player_attack_cooldown = false

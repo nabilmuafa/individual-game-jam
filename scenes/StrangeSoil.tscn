@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://dnjs1sww7knqa"]
+[gd_scene load_steps=11 format=4 uid="uid://dnjs1sww7knqa"]
 
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_1dif1"]
 [ext_resource type="Script" path="res://scenes/StrangeSoil.gd" id="1_80r5x"]
@@ -471,6 +471,12 @@ texture = ExtResource("1_1dif1")
 [sub_resource type="TileSet" id="TileSet_jlujy"]
 sources/0 = SubResource("TileSetAtlasSource_ghbss")
 
+[sub_resource type="Curve2D" id="Curve2D_fjqk3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 246, -148, 0, 0, 0, 0, -266.983, -147.05, 0, 0, 0, 0, -266.983, 157.85, 0, 0, 0, 0, 247.965, 157.85, 0, 0, 0, 0, 246, -148.95)
+}
+point_count = 5
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5om7"]
 size = Vector2(20, 689)
 
@@ -516,6 +522,18 @@ limit_left = -160
 limit_top = -280
 limit_right = 608
 
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(4.67578, -6.18482)
+scale = Vector2(1.01758, 1.05281)
+curve = SubResource("Curve2D_fjqk3")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+position = Vector2(246.003, -148.533)
+rotation = -1.5772
+progress = 1639.0
+
+[node name="Marker2D" type="Marker2D" parent="Player/Path2D/PathFollow2D"]
+
 [node name="BambooEnemy" parent="." instance=ExtResource("6_5n6fq")]
 position = Vector2(-24, 145)
 
@@ -526,4 +544,8 @@ position = Vector2(-179, 0)
 position = Vector2(0, 57)
 shape = SubResource("RectangleShape2D_v5om7")
 
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+wait_time = 39.454
+
 [connection signal="body_entered" from="ForestSceneTrigger" to="." method="_on_forest_scene_trigger_body_entered"]
+[connection signal="timeout" from="EnemySpawnTimer" to="." method="_on_enemy_spawn_timer_timeout"]

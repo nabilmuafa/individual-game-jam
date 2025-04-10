@@ -18,6 +18,8 @@ func _ready() -> void:
 		max_take = GameManager.takenID[item_id]
 		if max_take == 0:
 			queue_free()
+	else:
+		GameManager.takenID[item_id] = max_take
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://scripts/Collectible.gdshader")
 	if not need_tools:
@@ -45,6 +47,7 @@ func take_item():
 		max_take -= 1
 		GameManager.takenID[item_id] = max_take
 		if max_take == 0:
+			GameManager.dropped_items.erase(item_id)
 			queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
