@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://b5q67ide05vpw"]
+[gd_scene load_steps=24 format=4 uid="uid://b5q67ide05vpw"]
 
 [ext_resource type="Script" path="res://scripts/Beach.gd" id="1_86jxt"]
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_o8k7s"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cucu6moet5f3y" path="res://scenes/items/Stick.tscn" id="9_by3el"]
 [ext_resource type="PackedScene" uid="uid://mrl4nnyfj74o" path="res://scenes/Player.tscn" id="10_hre31"]
 [ext_resource type="PackedScene" uid="uid://dygdec12vvp3f" path="res://scenes/PlayerCamera.tscn" id="11_t6rbn"]
-[ext_resource type="PackedScene" uid="uid://d4ltxwip1wuo3" path="res://scenes/BambooEnemy.tscn" id="13_ojoqw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jlrk"]
 texture = ExtResource("1_o8k7s")
@@ -1686,9 +1685,6 @@ item_id = 4
 [node name="Player" parent="." instance=ExtResource("10_hre31")]
 
 [node name="Camera2D" parent="Player" instance=ExtResource("11_t6rbn")]
-
-[node name="BambooEnemy" parent="." instance=ExtResource("13_ojoqw")]
-position = Vector2(-49, -73)
 
 [node name="EnvironmentLayerOverlap3" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD7/xYAAAAPAAwAAAD7/xcAAAAPAA0AAAD8/xYAAAAQAAwAAAD8/xcAAAAQAA0AAAADABUAAAARAAoAABACABUAAAASAAoAABABABUAAAATAAoAABADABYAAAARAAsAABACABYAAAASAAsAABABABYAAAATAAsAABAAABYAAAAUAAsAABADABcAAAARAAwAABACABcAAAASAAwAABABABcAAAATAAwAABAAABcAAAAUAAwAABD+/xYAAAAPAAoAABD9/xYAAAAQAAoAABD+/xcAAAAPAAsAABD9/xcAAAAQAAsAABA=")
