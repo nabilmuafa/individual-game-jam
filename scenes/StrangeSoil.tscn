@@ -536,6 +536,7 @@ progress = 1639.0
 
 [node name="BambooEnemy" parent="." instance=ExtResource("6_5n6fq")]
 position = Vector2(-24, 145)
+entity_id = 1
 
 [node name="ForestSceneTrigger" type="Area2D" parent="."]
 position = Vector2(-179, 0)

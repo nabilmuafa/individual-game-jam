@@ -18,11 +18,17 @@ var player_in_attack_zone = false
 
 var is_attacking = false
 
+func _enter_tree() -> void:
+	if entity_id:
+		if GameManager.entityID.has(entity_id):
+			queue_free()
+	else:
+		entity_id = GameManager.get_runtime_id()
+
 func _ready() -> void:
 	red_flash = ShaderMaterial.new()
 	red_flash.shader = preload("res://scripts/RedFlash.gdshader")
 	anim.material = red_flash
-	entity_id = GameManager.get_runtime_id()
 	
 
 func _physics_process(_delta: float) -> void:
@@ -106,6 +112,7 @@ func deal_with_damage():
 				"position": item_dropped_node.position,
 				"max_take": item_dropped_node.max_take,
 			}
+		GameManager.entityID[entity_id] = 1
 		self.queue_free()
 
 

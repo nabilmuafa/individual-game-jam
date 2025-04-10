@@ -12,14 +12,18 @@ extends Node2D
 var shader_material: ShaderMaterial
 var tool_held = true
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+
+func _enter_tree() -> void:
 	if GameManager.takenID.has(item_id):
 		max_take = GameManager.takenID[item_id]
 		if max_take == 0:
 			queue_free()
 	else:
 		GameManager.takenID[item_id] = max_take
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://scripts/Collectible.gdshader")
 	if not need_tools:
