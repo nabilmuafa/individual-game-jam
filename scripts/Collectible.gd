@@ -1,6 +1,7 @@
 extends Node2D
 
 var player_in_range = false
+@export var item_id: int
 @export var item_name: String
 @export var unlimited = false
 @export var max_take = 1
@@ -14,6 +15,10 @@ var tool_held = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if GameManager.takenID.has(item_id):
+		max_take = GameManager.takenID[item_id]
+		if max_take == 0:
+			queue_free()
 	shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://scripts/Collectible.gdshader")
 	if not need_tools:
@@ -38,6 +43,7 @@ func _process(_delta: float) -> void:
 		PlayerInventory.add_item(item_name, 1)
 		if not unlimited:
 			max_take -= 1
+			GameManager.takenID[item_id] = max_take
 			if max_take == 0:
 				queue_free()
 

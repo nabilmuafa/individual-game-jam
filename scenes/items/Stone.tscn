@@ -14,7 +14,6 @@ radius = 18.0
 [node name="Stone" type="Node2D"]
 script = ExtResource("1_rpi7t")
 item_name = "Stone"
-unlimited = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_luwgt")

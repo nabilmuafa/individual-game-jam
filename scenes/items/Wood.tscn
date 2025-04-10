@@ -13,6 +13,7 @@ radius = 16.0
 
 [node name="Wood" type="Node2D"]
 script = ExtResource("1_fk5xu")
+item_name = "Wood"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_8yyyu")
