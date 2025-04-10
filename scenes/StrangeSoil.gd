@@ -22,6 +22,21 @@ func _ready() -> void:
 	$Player.position.y = GameManager.y_pos
 	$Player.position.x = GameManager.x_pos
 	
+func is_valid_spawn_position(pos: Vector2, radius: float = 8.0) -> bool:
+	var space_state = get_world_2d().direct_space_state
+	var shape = CircleShape2D.new()
+	shape.radius = radius
+
+	var params = PhysicsShapeQueryParameters2D.new()
+	params.shape = shape
+	params.transform = Transform2D(0, pos)
+	params.collide_with_areas = true
+	params.collide_with_bodies = true
+
+	var result = space_state.intersect_shape(params, 1)
+	return result.is_empty()
+
+
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -43,11 +58,15 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	timer.wait_time = rng.randi_range(8, 13)
-	
 	$Player/Path2D/PathFollow2D.progress = rng.randf_range(0.0, 1639.0)
-	var enemy_instance = enemy.instantiate()
+	var spawn_pos = $Player/Path2D/PathFollow2D/Marker2D.global_position
 	
-	enemy_instance.global_position = $Player/Path2D/PathFollow2D/Marker2D.global_position
-	$EnemyLayer.add_child(enemy_instance)
+	if is_valid_spawn_position(spawn_pos):
+		timer.wait_time = rng.randi_range(8, 13)
+		var enemy_instance = enemy.instantiate()
+		enemy_instance.global_position = spawn_pos
+		$EnemyLayer.add_child(enemy_instance)
+	else:
+		timer.wait_time = 0.1
+	
 	timer.start()
