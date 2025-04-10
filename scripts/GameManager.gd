@@ -6,6 +6,8 @@ extends Node
 @onready var thunderAudio = $AudioStreamPlayerThunder
 @onready var whooshAudio = $AudioStreamPlayerWhoosh
 
+var game_started = false
+
 var takenID = {}
 var entityID = {}
 var dropped_items = {}

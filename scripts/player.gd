@@ -23,6 +23,9 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if not GameManager.game_started:
+		return
+		
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
 	if direction.x == 0 and direction.y == 0:
@@ -40,6 +43,11 @@ func _physics_process(_delta: float) -> void:
 	
 	
 func _process(_delta: float) -> void:
+	if not GameManager.game_started:
+		return
+	else:
+		$UILayer.visible = true
+		
 	if not is_attacking and Input.is_action_just_pressed("attack"):
 		start_attack()
 		

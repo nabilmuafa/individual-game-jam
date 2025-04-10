@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://b5q67ide05vpw"]
+[gd_scene load_steps=25 format=4 uid="uid://b5q67ide05vpw"]
 
 [ext_resource type="Script" path="res://scripts/Beach.gd" id="1_86jxt"]
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_o8k7s"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cucu6moet5f3y" path="res://scenes/items/Stick.tscn" id="9_by3el"]
 [ext_resource type="PackedScene" uid="uid://mrl4nnyfj74o" path="res://scenes/Player.tscn" id="10_hre31"]
 [ext_resource type="PackedScene" uid="uid://dygdec12vvp3f" path="res://scenes/PlayerCamera.tscn" id="11_t6rbn"]
+[ext_resource type="PackedScene" uid="uid://chikaltpp5ht" path="res://scenes/MainMenuOverlay.tscn" id="13_lrtka"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jlrk"]
 texture = ExtResource("1_o8k7s")
@@ -1704,5 +1705,7 @@ position = Vector2(80, 0)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextSceneTrigger"]
 position = Vector2(165, 17)
 shape = SubResource("RectangleShape2D_jkk6r")
+
+[node name="MainMenuOverlay" parent="." instance=ExtResource("13_lrtka")]
 
 [connection signal="body_entered" from="NextSceneTrigger" to="." method="_on_next_scene_trigger_body_entered"]

@@ -8,6 +8,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if not GameManager.game_started:
+		return
+		
 	if Input.is_action_just_pressed("inventory"):
 		$Inventory.visible = !$Inventory.visible
 		$Inventory/CraftingMenu.visible = false
