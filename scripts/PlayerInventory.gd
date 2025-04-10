@@ -82,3 +82,7 @@ func active_item_scroll_up():
 func active_item_scroll_down():
 	active_item_slot = (active_item_slot + 1) % HOTBAR_SLOTS
 	emit_signal("active_item_updated")
+	
+func select_hotbar(num):
+	active_item_slot = num
+	emit_signal("active_item_updated")

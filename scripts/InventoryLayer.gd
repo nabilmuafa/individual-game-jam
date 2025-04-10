@@ -13,6 +13,19 @@ func _process(_delta: float) -> void:
 		$Inventory/CraftingMenu.visible = false
 		$Inventory.initialize_inventory()
 		
+	if Input.is_action_just_pressed("hotbar_1"):
+		PlayerInventory.select_hotbar(0)
+	if Input.is_action_just_pressed("hotbar_2"):
+		PlayerInventory.select_hotbar(1)
+	if Input.is_action_just_pressed("hotbar_3"):
+		PlayerInventory.select_hotbar(2)
+	if Input.is_action_just_pressed("hotbar_4"):
+		PlayerInventory.select_hotbar(3)
+	if Input.is_action_just_pressed("hotbar_5"):
+		PlayerInventory.select_hotbar(4)
+	if Input.is_action_just_pressed("hotbar_6"):
+		PlayerInventory.select_hotbar(5)
+		
 	if Input.is_action_just_released("scroll_up"):
 		PlayerInventory.active_item_scroll_up()
 	elif Input.is_action_just_released("scroll_down"):
