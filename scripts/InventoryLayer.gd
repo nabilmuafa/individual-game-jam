@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("inventory"):
 		$Inventory.visible = !$Inventory.visible
+		$Inventory/CraftingMenu.visible = false
 		$Inventory.initialize_inventory()
 		
 	if Input.is_action_just_released("scroll_up"):
