@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @onready var anim = $AnimatedSprite2D
 @onready var attack_anim = $AttackAnim
+@onready var attack_audio = $AudioStreamPlayerAttack
 
 var red_flash: ShaderMaterial
 
@@ -76,6 +77,8 @@ func start_attack():
 func _on_attack_windup_timer_timeout() -> void:
 	anim.play("idle")
 	attack_anim.play("attack")
+	attack_audio.play()
+	
 	if player_in_attack_zone and player:
 		player.enemy_attack()
 	
@@ -86,14 +89,20 @@ func _on_attack_anim_animation_finished() -> void:
 
 func deal_with_damage():
 	GameManager.player_attack_cooldown = true
+	
 	anim.material.set_shader_parameter("flash_strength", 0.5)
 	await get_tree().create_timer(0.1).timeout
 	anim.material.set_shader_parameter("flash_strength", 0.0)
+	
+	
 	var damage = 15
 	if PlayerInventory.inventory.has(PlayerInventory.active_item_slot):
 		var item_held = PlayerInventory.inventory[PlayerInventory.active_item_slot][0]
-		damage = JsonData.item_data[item_held]["ItemAttack"]
-		
+		if JsonData.item_data[item_held]["ItemCategory"] == "Weapon":
+			damage = JsonData.item_data[item_held]["ItemAttack"]
+	
+	GameManager.enemy_hit()
+	
 	health -= damage
 	if health <= 0:
 		var drop_count = randi_range(1, 4)

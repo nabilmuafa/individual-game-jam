@@ -46,6 +46,7 @@ func _process(_delta: float) -> void:
 		
 				
 func take_item():
+	play_take_item_audio()
 	PlayerInventory.add_item(item_name, 1)
 	if not unlimited:
 		max_take -= 1
@@ -53,6 +54,12 @@ func take_item():
 		if max_take == 0:
 			GameManager.dropped_items.erase(item_id)
 			queue_free()
+
+func play_take_item_audio():
+	if need_tools:
+		GameManager.mine_item()
+	else:
+		GameManager.take_item()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":

@@ -1,9 +1,10 @@
-[gd_scene load_steps=38 format=3 uid="uid://d4ltxwip1wuo3"]
+[gd_scene load_steps=39 format=3 uid="uid://d4ltxwip1wuo3"]
 
 [ext_resource type="Texture2D" uid="uid://cf48igx3drddn" path="res://assets/Ninja Adventure - Asset Pack/Actor/Monsters/BambooYellow/SpriteSheet.png" id="1_eouxy"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_spdyb"]
 [ext_resource type="Texture2D" uid="uid://bfl34q5sghnoi" path="res://assets/Ninja Adventure - Asset Pack/Actor/Monsters/BambooYellow/Attack_Windup_Sprite.png" id="2_0sc7h"]
 [ext_resource type="Texture2D" uid="uid://chrw3rwhbsnc4" path="res://assets/Ninja Adventure - Asset Pack/FX/Elemental/RockSpike/SpriteSheet.png" id="2_pm7ge"]
+[ext_resource type="AudioStream" uid="uid://cxmlt4ecp88ka" path="res://assets/Ninja Adventure - Asset Pack/Audio/Sounds/EnemyAttack.wav" id="5_jywlh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_65qwj"]
 atlas = ExtResource("2_0sc7h")
@@ -252,7 +253,7 @@ animations = [{
 radius = 79.7621
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lfaev"]
-radius = 8.0
+radius = 9.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxbcq"]
 radius = 13.0
@@ -278,6 +279,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_adoak")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_lfaev")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
@@ -289,6 +291,9 @@ debug_color = Color(0.964993, 0.188515, 0, 0.42)
 [node name="AttackWindupTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AudioStreamPlayerAttack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_jywlh")
 
 [connection signal="animation_finished" from="AttackAnim" to="." method="_on_attack_anim_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]

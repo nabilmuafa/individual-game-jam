@@ -4,6 +4,7 @@ extends Node
 @export var y_pos: float = 0.0;
 @export var last_dir = "e"
 @onready var thunderAudio = $AudioStreamPlayerThunder
+@onready var whooshAudio = $AudioStreamPlayerWhoosh
 
 var takenID = {}
 var entityID = {}
@@ -27,3 +28,18 @@ func _process(_delta: float) -> void:
 func get_runtime_id():
 	runtime_id += 1
 	return runtime_id
+	
+func enemy_hit():
+	$AudioStreamPlayerEnemyHit.play()
+	
+func player_hit():
+	$AudioStreamPlayerPlayerHit.play()
+	
+func audio_attack():
+	whooshAudio.play()
+	
+func take_item():
+	$AudioStreamPlayerTakeItem.play()
+
+func mine_item():
+	$AudioStreamPlayerMine.play()

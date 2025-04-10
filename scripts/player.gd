@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 100
 @onready var anim = $AnimatedSprite2D
 @onready var attack_anim = $AttackSweep
+@onready var walk_audio = $AudioStreamPlayer2D
 
 signal healthChanged
 
@@ -26,8 +27,11 @@ func _physics_process(_delta: float) -> void:
 	
 	if direction.x == 0 and direction.y == 0:
 		player_state = "idle"
+		walk_audio.stop()
 	elif direction.x != 0 or direction.y != 0:
 		player_state = "walking"
+		if not walk_audio.playing:
+			walk_audio.play()
 		
 	velocity = direction * speed
 	if not is_attacking:
@@ -85,19 +89,25 @@ func start_attack():
 	GameManager.player_current_attack = true
 	if PlayerInventory.inventory.has(PlayerInventory.active_item_slot):
 		var item_held = PlayerInventory.inventory[PlayerInventory.active_item_slot][0]
-		var anim_speed = JsonData.item_data[item_held]["ItemSpeed"]
-		anim.speed_scale = anim_speed
-		attack_anim.speed_scale = anim_speed
+		if JsonData.item_data[item_held]["ItemCategory"] == "Weapon":
+			var anim_speed = JsonData.item_data[item_held]["ItemSpeed"]
+			anim.speed_scale = anim_speed
+			attack_anim.speed_scale = anim_speed
+		else:
+			anim.speed_scale = 1.0
+			attack_anim.speed_scale = 1.0
 	else:
 		anim.speed_scale = 1.0
 		attack_anim.speed_scale = 1.0
 	anim.play("attack_" + last_dir)
 	attack_anim.play("sword_sweep")
+	GameManager.audio_attack()
 
 
 func enemy_attack():
 	health -= 20
 	GameManager.player_health -= 20
+	GameManager.player_hit()
 	emit_signal("healthChanged")
 	
 

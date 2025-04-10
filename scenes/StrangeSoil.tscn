@@ -1410,13 +1410,6 @@ item_id = 21
 position = Vector2(239, 218)
 item_id = 22
 
-[node name="EnemyLayer" type="Node2D" parent="."]
-position = Vector2(-160, 0)
-
-[node name="BambooEnemy" parent="EnemyLayer" instance=ExtResource("6_5n6fq")]
-position = Vector2(136, 145)
-entity_id = 1
-
 [node name="Player" parent="." instance=ExtResource("3_8kbuj")]
 position = Vector2(-160, 0)
 
@@ -1436,6 +1429,13 @@ rotation = -1.5772
 progress = 1639.0
 
 [node name="Marker2D" type="Marker2D" parent="Player/Path2D/PathFollow2D"]
+
+[node name="EnemyLayer" type="Node2D" parent="."]
+position = Vector2(-160, 0)
+
+[node name="BambooEnemy" parent="EnemyLayer" instance=ExtResource("6_5n6fq")]
+position = Vector2(136, 145)
+entity_id = 1
 
 [node name="ForestSceneTrigger" type="Area2D" parent="."]
 position = Vector2(-179, 0)
