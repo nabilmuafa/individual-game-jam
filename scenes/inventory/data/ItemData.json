@@ -31,4 +31,10 @@
 		"StackSize": 1,
 		"Description": "*bonk*"
 	},
+	"Crystal": {
+		"ItemCategory": "Resource",
+		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/CrystalItem.png",
+		"StackSize": 64,
+		"Description": "Somehow, it is the substitute for metal.",
+	},
 }
