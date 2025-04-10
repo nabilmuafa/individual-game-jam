@@ -1,6 +1,5 @@
 extends Node2D
 
-var player_in_range = false
 @export var item_id: int
 @export var item_name: String
 @export var unlimited = false
@@ -38,21 +37,21 @@ func _process(_delta: float) -> void:
 		else:
 			sprite.material = null
 			tool_held = false
-			
-	if Input.is_action_just_pressed("interact") and player_in_range and tool_held:
-		PlayerInventory.add_item(item_name, 1)
-		if not unlimited:
-			max_take -= 1
-			GameManager.takenID[item_id] = max_take
-			if max_take == 0:
-				queue_free()
-
+		
+				
+func take_item():
+	PlayerInventory.add_item(item_name, 1)
+	if not unlimited:
+		max_take -= 1
+		GameManager.takenID[item_id] = max_take
+		if max_take == 0:
+			queue_free()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
-		player_in_range = true
+		body.register_item(self)
 
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
-		player_in_range = false
+		body.unregister_item(self)

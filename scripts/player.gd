@@ -12,6 +12,7 @@ var last_dir = "e"
 
 var health: int
 var player_alive = true
+var items_in_range: Array = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,6 +42,20 @@ func _process(_delta: float) -> void:
 	if health <= 0:
 		player_alive = false
 		print("YOURE A DEAD MAN")
+		
+	if Input.is_action_just_pressed("interact") and items_in_range.size() > 0:
+		var closest_item = null
+		var closest_dist = INF
+		for item in items_in_range:
+			if not item.tool_held:
+				continue
+			var dist = position.distance_to(item.position)
+			if dist < closest_dist:
+				closest_dist = dist
+				closest_item = item
+		
+		if closest_item:
+			closest_item.take_item()
 
 
 func play_anim(direction):
@@ -85,6 +100,13 @@ func enemy_attack():
 	GameManager.player_health -= 20
 	emit_signal("healthChanged")
 	
+
+func register_item(item: Node2D) -> void:
+	items_in_range.append(item)
+	
+
+func unregister_item(item: Node2D) -> void:
+	items_in_range.erase(item)
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

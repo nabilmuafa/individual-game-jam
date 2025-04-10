@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var item_dropped: String
 @export var speed = 50
 @onready var anim = $AnimatedSprite2D
 @onready var attack_anim = $AttackAnim
@@ -86,6 +87,15 @@ func deal_with_damage():
 		
 	health -= damage
 	if health <= 0:
+		var drop_count = randi_range(1, 4)
+		for i in range(drop_count):
+			var item_dropped_scene = load("res://scenes/items/"+item_dropped+".tscn")
+			var object_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
+			var item_dropped_node = item_dropped_scene.instantiate()
+			item_dropped_node.position = self.position + object_offset
+			item_dropped_node.max_take = 3
+			item_dropped_node.item_id = GameManager.get_runtime_id()
+			get_parent().get_node("Items").add_child(item_dropped_node)
 		self.queue_free()
 
 
