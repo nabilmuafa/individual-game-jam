@@ -24,6 +24,9 @@ func _ready():
 		slots[i].slot_index = i
 		slots[i].slot_type = InventorySlot.SlotType.INVENTORY
 	initialize_inventory()
+	$CraftingMenu.craft_pickaxe.connect(craft_pickaxe)
+	$CraftingMenu.craft_club.connect(craft_club)
+	$CraftingMenu.craft_sword.connect(craft_sword)
 
 func initialize_inventory():
 	var slots = hotbar_slots.get_children() + inventory_slots.get_children()
@@ -179,16 +182,16 @@ func _on_crafting_button_pressed() -> void:
 	$CraftingMenu.visible = !$CraftingMenu.visible
 
 
-func _on_pickaxe_craft_button_pressed() -> void:
+func craft_pickaxe() -> void:
 	var required = {"Stone": 3, "Wood": 4}
 	craft_item("Pickaxe", required)
 
 
-func _on_club_craft_button_pressed() -> void:
+func craft_club() -> void:
 	var required = {"Stick": 1, "Wood": 8}
 	craft_item("Club", required)
 
 
-func _on_sword_craft_button_pressed() -> void:
-	var required = {"Stick": 1, "Stone": 2, "Metal": 4}
+func craft_sword() -> void:
+	var required = {"Stick": 1, "Stone": 2, "Crystal": 4}
 	craft_item("Sword", required)
