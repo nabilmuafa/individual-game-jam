@@ -9,6 +9,9 @@ const InventorySlot = preload("res://scripts/InventorySlot.gd")
 const ItemClass = preload("res://scripts/inventory_item.gd")
 
 var inventory = {
+	0: ["Sword", 1],
+	1: ["Club", 1],
+	2: ["Stick", 1]
 }
 
 var active_item_slot = 0

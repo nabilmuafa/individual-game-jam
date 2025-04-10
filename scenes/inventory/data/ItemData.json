@@ -2,8 +2,8 @@
 	"Stick": {
 		"ItemCategory": "Weapon",
 		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Stick/Sprite.png",
-		"ItemAttack": 3,
-		"ItemSpeed": 0.5,
+		"ItemAttack": 25,
+		"ItemSpeed": 1,
 		"StackSize": 1,
 		"Description": "It'll do.",
 	},
@@ -28,6 +28,8 @@
 	"Club": {
 		"ItemCategory": "Weapon",
 		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Club/Sprite.png",
+		"ItemAttack": 50,
+		"ItemSpeed": 0.5,
 		"StackSize": 1,
 		"Description": "*bonk*"
 	},
@@ -36,5 +38,13 @@
 		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/CrystalItem.png",
 		"StackSize": 64,
 		"Description": "Somehow, it is the substitute for metal.",
+	},
+	"Sword": {
+		"ItemCategory": "Weapon",
+		"ItemTexture": "res://assets/Ninja Adventure - Asset Pack/Items/Weapons/Sword2/Sprite.png",
+		"ItemAttack": 40,
+		"ItemSpeed": 2,
+		"StackSize": 1,
+		"Description": "*bonk*"
 	},
 }

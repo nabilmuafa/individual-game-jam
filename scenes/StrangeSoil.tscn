@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://dnjs1sww7knqa"]
+[gd_scene load_steps=10 format=4 uid="uid://dnjs1sww7knqa"]
 
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_1dif1"]
 [ext_resource type="Script" path="res://scenes/StrangeSoil.gd" id="1_80r5x"]
 [ext_resource type="PackedScene" uid="uid://mrl4nnyfj74o" path="res://scenes/Player.tscn" id="3_8kbuj"]
 [ext_resource type="PackedScene" uid="uid://ix1gjtr8knhq" path="res://scenes/items/CrystalMineable.tscn" id="3_quu66"]
 [ext_resource type="PackedScene" uid="uid://dygdec12vvp3f" path="res://scenes/PlayerCamera.tscn" id="4_x6l4m"]
+[ext_resource type="PackedScene" uid="uid://d4ltxwip1wuo3" path="res://scenes/BambooEnemy.tscn" id="6_5n6fq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ghbss"]
 texture = ExtResource("1_1dif1")
@@ -514,6 +515,9 @@ position = Vector2(-160, 0)
 limit_left = -160
 limit_top = -280
 limit_right = 608
+
+[node name="BambooEnemy" parent="." instance=ExtResource("6_5n6fq")]
+position = Vector2(-24, 145)
 
 [node name="ForestSceneTrigger" type="Area2D" parent="."]
 position = Vector2(-179, 0)
