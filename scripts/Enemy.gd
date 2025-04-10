@@ -33,9 +33,9 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if player_chase and player and not is_attacking:
-		if position.distance_to(player.position) > 12.3:
-			var direction = (player.position - position).normalized()
-			position += direction * speed * _delta
+		if global_position.distance_to(player.global_position) > 12.3:
+			var direction = (player.global_position - global_position).normalized()
+			global_position += direction * speed * _delta
 
 			play_walk_anim(direction)
 		
@@ -101,10 +101,10 @@ func deal_with_damage():
 			var item_dropped_scene = load("res://scenes/items/"+item_dropped+".tscn")
 			var object_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))
 			var item_dropped_node = item_dropped_scene.instantiate()
-			item_dropped_node.position = self.position + object_offset
+			item_dropped_node.position = self.global_position + object_offset
 			item_dropped_node.max_take = 3
 			item_dropped_node.item_id = GameManager.get_runtime_id()
-			get_parent().get_node("Items").add_child(item_dropped_node)
+			get_parent().get_parent().get_node("Items").add_child(item_dropped_node)
 			GameManager.dropped_items[item_dropped_node.item_id] = {
 				"item_id": item_dropped_node.item_id,
 				"scene": get_parent().name,

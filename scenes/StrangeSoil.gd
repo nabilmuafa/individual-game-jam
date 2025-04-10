@@ -16,7 +16,7 @@ func _ready() -> void:
 			item_instance.max_take = GameManager.takenID[drop["item_id"]]
 			$Items.add_child(item_instance)
 	randomize()
-	timer.wait_time = randi_range(10, 17)
+	timer.wait_time = randi_range(8, 13)
 	timer.start()
 	
 	$Player.position.y = GameManager.y_pos
@@ -24,7 +24,7 @@ func _ready() -> void:
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -43,11 +43,11 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	
-	timer.wait_time = rng.randi_range(10, 17)
+	timer.wait_time = rng.randi_range(8, 13)
 	
 	$Player/Path2D/PathFollow2D.progress = rng.randf_range(0.0, 1639.0)
 	var enemy_instance = enemy.instantiate()
 	
 	enemy_instance.global_position = $Player/Path2D/PathFollow2D/Marker2D.global_position
-	add_child(enemy_instance)
+	$EnemyLayer.add_child(enemy_instance)
 	timer.start()
