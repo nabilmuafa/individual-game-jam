@@ -1305,7 +1305,7 @@ tile_set = SubResource("TileSet_17ucy")
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Wood" parent="Items" instance=ExtResource("6_n7gk1")]
-position = Vector2(120, -39)
+position = Vector2(480, -79)
 item_id = 5
 max_take = 3
 
@@ -1320,13 +1320,17 @@ item_id = 7
 max_take = 3
 
 [node name="Wood4" parent="Items" instance=ExtResource("6_n7gk1")]
-position = Vector2(200, 201)
+position = Vector2(432, 201)
 item_id = 8
 max_take = 3
 
 [node name="StoneMineable" parent="Items" instance=ExtResource("5_a3nhu")]
 position = Vector2(260, -50)
 item_id = 9
+
+[node name="StoneMineable2" parent="Items" instance=ExtResource("5_a3nhu")]
+position = Vector2(292, 254)
+item_id = 16
 
 [node name="Player" parent="." instance=ExtResource("2_x617p")]
 position = Vector2(-150, 20)

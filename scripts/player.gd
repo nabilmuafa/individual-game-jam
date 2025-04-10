@@ -4,17 +4,13 @@ extends CharacterBody2D
 @onready var anim = $AnimatedSprite2D
 
 var player_state
+var is_attacking = false
 var last_dir = "e"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	last_dir = GameManager.last_dir
 	PlayerInventory.inventory_layer = $InventoryLayer
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
 
 
 func _physics_process(_delta: float) -> void:
@@ -26,9 +22,18 @@ func _physics_process(_delta: float) -> void:
 		player_state = "walking"
 		
 	velocity = direction * speed
-	play_anim(direction)
+	if not is_attacking:
+		play_anim(direction)
 	move_and_slide()
 	
+func _process(_delta: float) -> void:
+	if not is_attacking and Input.is_action_just_pressed("attack"):
+		start_attack()
+	
+func start_attack():
+	is_attacking = true
+	anim.play("attack_" + last_dir)
+
 func play_anim(direction):
 	if player_state == "idle":
 		anim.play("idle_"+last_dir)
@@ -45,6 +50,8 @@ func play_anim(direction):
 		elif direction.x == 1:
 			anim.play("walk_e")
 			last_dir = "e"
-	
-			
-		
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if anim.animation.begins_with("attack_"):
+		is_attacking = false
