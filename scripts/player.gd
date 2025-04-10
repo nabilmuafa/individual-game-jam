@@ -81,7 +81,6 @@ func start_attack():
 func enemy_attack():
 	health -= 20
 	GameManager.player_health -= 20
-	print("Player attacked, health: ",health)
 
 
 func _on_animated_sprite_2d_animation_finished() -> void:

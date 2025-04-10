@@ -85,7 +85,6 @@ func deal_with_damage():
 		damage = JsonData.item_data[item_held]["ItemAttack"]
 		
 	health -= damage
-	print("Enemy attacked, health: ", health)
 	if health <= 0:
 		self.queue_free()
 
