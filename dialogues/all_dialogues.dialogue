@@ -1,0 +1,10 @@
+~ game_start
+The Protagonist: ...
+The Protagonist: Where... Where am I?
+The Protagonist: What is this place? How did I even got here...?
+The Protagonist: I have to find a way to escape.
+=> END
+
+~ no_weapon_beach
+The Protagonist: Hmm... I think it would be wise to bring a weapon before exploring.
+=> END

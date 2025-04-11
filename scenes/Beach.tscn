@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://b5q67ide05vpw"]
+[gd_scene load_steps=26 format=4 uid="uid://b5q67ide05vpw"]
 
 [ext_resource type="Script" path="res://scripts/Beach.gd" id="1_86jxt"]
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_o8k7s"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://cucu6moet5f3y" path="res://scenes/items/Stick.tscn" id="9_by3el"]
 [ext_resource type="PackedScene" uid="uid://mrl4nnyfj74o" path="res://scenes/Player.tscn" id="10_hre31"]
 [ext_resource type="PackedScene" uid="uid://dygdec12vvp3f" path="res://scenes/PlayerCamera.tscn" id="11_t6rbn"]
-[ext_resource type="PackedScene" uid="uid://chikaltpp5ht" path="res://scenes/MainMenuOverlay.tscn" id="13_lrtka"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jlrk"]
 texture = ExtResource("1_o8k7s")
@@ -1654,6 +1653,12 @@ sources/0 = SubResource("TileSetAtlasSource_o0qyk")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkk6r"]
 size = Vector2(20, 54)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qolh5"]
+radius = 23.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mgn2i"]
+radius = 12.0416
+
 [node name="Beach" type="Node2D"]
 script = ExtResource("1_86jxt")
 
@@ -1706,6 +1711,19 @@ position = Vector2(80, 0)
 position = Vector2(165, 17)
 shape = SubResource("RectangleShape2D_jkk6r")
 
-[node name="MainMenuOverlay" parent="." instance=ExtResource("13_lrtka")]
+[node name="DialogueGate" type="Node2D" parent="."]
+position = Vector2(178, 22)
+
+[node name="IsStickTakenArea2D" type="Area2D" parent="DialogueGate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueGate/IsStickTakenArea2D"]
+shape = SubResource("CircleShape2D_qolh5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DialogueGate"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueGate/StaticBody2D"]
+shape = SubResource("CircleShape2D_mgn2i")
+debug_color = Color(0.908218, 0.000116476, 0.737456, 0.42)
 
 [connection signal="body_entered" from="NextSceneTrigger" to="." method="_on_next_scene_trigger_body_entered"]
+[connection signal="body_entered" from="DialogueGate/IsStickTakenArea2D" to="." method="_on_is_stick_taken_area_2d_body_entered"]

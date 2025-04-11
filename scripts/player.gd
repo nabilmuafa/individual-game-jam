@@ -23,7 +23,11 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if not GameManager.game_started:
+	if not GameManager.is_first_dialogue_shown:
+		return
+	elif GameManager.is_movement_disabled and GameManager.is_first_dialogue_shown:
+		player_state = "idle"
+		play_anim(last_dir)
 		return
 		
 	var direction = Input.get_vector("left", "right", "up", "down")
@@ -44,6 +48,9 @@ func _physics_process(_delta: float) -> void:
 	
 func _process(_delta: float) -> void:
 	if not GameManager.game_started:
+		return
+	elif GameManager.is_movement_disabled:
+		$UILayer.visible = true
 		return
 	else:
 		$UILayer.visible = true

@@ -1424,7 +1424,7 @@ scale = Vector2(1.01758, 1.05281)
 curve = SubResource("Curve2D_fjqk3")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
-position = Vector2(246.003, -148.533)
+position = Vector2(246.003, -148.532)
 rotation = -1.5772
 progress = 1639.0
 
