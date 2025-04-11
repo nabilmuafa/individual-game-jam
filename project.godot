@@ -10,10 +10,13 @@ config_version=5
 
 [application]
 
-config/name="individual-game-jam"
+config/name="Escape From A Short Escape"
+config/description="Waking up stranded in a strange land, you know how to escape, but do you have what it takes?"
+config/version="1.0.0"
 run/main_scene="res://scenes/Beach.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Icon.png"
+config/windows_native_icon="res://Icon.ico"
 
 [autoload]
 
