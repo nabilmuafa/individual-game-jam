@@ -10,14 +10,17 @@ You're playing as The Protagonist, who luckily is a wildlife expert, so you know
 
 ## Diversifiers
 
-- Inventory: Player has an inventory that can be used to access items they've taken along the way.
-- Stranded: The player wakes up in a remote island, having no memory of what led him there. Wait, is it a remote island, though?
-- **[TODO]** Previously, I've chosen _Archive_ as the third diversifier, but I don't think it would be good enough for a short game that will mainly be hosted on Itch. I'm choosing another. _Still_ choosing another.
+- Bored Ape: Collecting something is the main objective of the game. In this game, the item being collected are the resources needed to escape.
+- Inventory: The player has an inventory system. Additionally, the player can also craft some things.
+- Stranded: The player is stranded in a remote island and have to survive.
 
 ## Mechanics
 
-_To Be Developed_
+_TBW_
 
 ## Assets Used
 
 - [Ninja Adventure Asset Pack by Pixel-Boy and AAA](https://pixel-boy.itch.io/ninja-adventure-asset-pack) (Creative Commons Zero License)
+- [Character Footsteps (Dirt & Grass) by Nebula Audio](https://nebula-audio.itch.io/character-footsteps-rock-grass-pack-1)
+- [Dialogue Manager Plugin by Nathan Hoad](https://github.com/nathanhoad/godot_dialogue_manager)
+- Some self-made assets using Aseprite
