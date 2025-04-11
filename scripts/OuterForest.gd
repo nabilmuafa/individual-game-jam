@@ -3,7 +3,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#pass
+	if GameManager.entered_forest:
+		$FirstDialogueTrigger.queue_free()
 	$Player.position.y = GameManager.y_pos
 	$Player.position.x = GameManager.x_pos
 	
@@ -32,3 +33,11 @@ func change_scene_to_beach():
 	
 func change_scene_to_soil():
 	get_tree().change_scene_to_file("res://scenes/StrangeSoil.tscn")
+
+
+func _on_first_dialogue_trigger_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		if GameManager.entered_forest:
+			return
+		GameManager.show_dialogue("enter_forest")
+		GameManager.entered_forest = true

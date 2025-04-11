@@ -1355,7 +1355,7 @@ tile_set = SubResource("TileSet_70wxh")
 [node name="Items" type="Node2D" parent="."]
 
 [node name="CrystalMineable" parent="Items" instance=ExtResource("3_quu66")]
-position = Vector2(65, -105)
+position = Vector2(-92, -81)
 item_id = 10
 
 [node name="CrystalMineable6" parent="Items" instance=ExtResource("3_quu66")]
@@ -1379,7 +1379,7 @@ position = Vector2(154, 286)
 item_id = 15
 
 [node name="CrystalMineable7" parent="Items" instance=ExtResource("3_quu66")]
-position = Vector2(-38, 310)
+position = Vector2(-48, 222)
 item_id = 23
 
 [node name="CrystalMineable8" parent="Items" instance=ExtResource("3_quu66")]
@@ -1434,7 +1434,7 @@ progress = 1639.0
 position = Vector2(-160, 0)
 
 [node name="BambooEnemy" parent="EnemyLayer" instance=ExtResource("6_5n6fq")]
-position = Vector2(136, 145)
+position = Vector2(227, 39)
 entity_id = 1
 
 [node name="ForestSceneTrigger" type="Area2D" parent="."]

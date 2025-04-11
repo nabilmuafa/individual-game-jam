@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d4ltxwip1wuo3"]
+[gd_scene load_steps=40 format=3 uid="uid://d4ltxwip1wuo3"]
 
 [ext_resource type="Texture2D" uid="uid://cf48igx3drddn" path="res://assets/Ninja Adventure - Asset Pack/Actor/Monsters/BambooYellow/SpriteSheet.png" id="1_eouxy"]
 [ext_resource type="Script" path="res://scripts/Enemy.gd" id="1_spdyb"]
@@ -258,6 +258,9 @@ radius = 9.5
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxbcq"]
 radius = 13.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h7i3m"]
+radius = 155.0
+
 [node name="BambooEnemy" type="CharacterBody2D" groups=["Enemy"]]
 motion_mode = 1
 script = ExtResource("1_spdyb")
@@ -295,9 +298,16 @@ one_shot = true
 [node name="AudioStreamPlayerAttack" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_jywlh")
 
+[node name="PlayerFirstEncounterDetect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerFirstEncounterDetect"]
+shape = SubResource("CircleShape2D_h7i3m")
+debug_color = Color(0.665461, 0.511772, 0, 0.42)
+
 [connection signal="animation_finished" from="AttackAnim" to="." method="_on_attack_anim_animation_finished"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="body_exited" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_exited"]
 [connection signal="timeout" from="AttackWindupTimer" to="." method="_on_attack_windup_timer_timeout"]
+[connection signal="body_entered" from="PlayerFirstEncounterDetect" to="." method="_on_player_first_encounter_detect_body_entered"]

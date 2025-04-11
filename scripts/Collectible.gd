@@ -63,6 +63,9 @@ func play_take_item_audio():
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		if item_name == "Crystal" and not GameManager.found_crystals:
+			GameManager.show_dialogue("found_crystals")
+			GameManager.found_crystals = true
 		body.register_item(self)
 
 

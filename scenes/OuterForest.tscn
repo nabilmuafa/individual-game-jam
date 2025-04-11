@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://dlns838fsu2s5"]
+[gd_scene load_steps=17 format=4 uid="uid://dlns838fsu2s5"]
 
 [ext_resource type="Script" path="res://scripts/OuterForest.gd" id="1_df8vk"]
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_hiayx"]
@@ -1289,6 +1289,9 @@ size = Vector2(6, 41)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hnmu5"]
 size = Vector2(12, 687)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_57dwd"]
+radius = 17.0294
+
 [node name="Outer Forest" type="Node2D"]
 script = ExtResource("1_df8vk")
 
@@ -1359,5 +1362,12 @@ position = Vector2(634, 0)
 position = Vector2(0, 55)
 shape = SubResource("RectangleShape2D_hnmu5")
 
+[node name="FirstDialogueTrigger" type="Area2D" parent="."]
+position = Vector2(-51, 22)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FirstDialogueTrigger"]
+shape = SubResource("CircleShape2D_57dwd")
+
 [connection signal="body_entered" from="BeachSceneTrigger" to="." method="_on_beach_scene_trigger_body_entered"]
 [connection signal="body_entered" from="SoilSceneTrigger" to="." method="_on_soil_scene_trigger_body_entered"]
+[connection signal="body_entered" from="FirstDialogueTrigger" to="." method="_on_first_dialogue_trigger_body_entered"]

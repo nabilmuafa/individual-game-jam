@@ -25,6 +25,7 @@ func _enter_tree() -> void:
 			queue_free()
 	else:
 		entity_id = GameManager.get_runtime_id()
+	visible = true
 
 func _ready() -> void:
 	red_flash = ShaderMaterial.new()
@@ -147,3 +148,10 @@ func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		player_in_attack_zone = false
+
+
+func _on_player_first_encounter_detect_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		if not GameManager.first_enemy_encounter:
+			GameManager.show_dialogue("first_enemy_encounter")
+			GameManager.first_enemy_encounter = true

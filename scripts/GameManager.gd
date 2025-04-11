@@ -19,9 +19,13 @@ var player_current_attack = false
 var player_attack_cooldown = false
 var player_enemy_cooldown = false
 
+var is_first_dialogue_shown = false
+var entered_forest = false
+var found_crystals = false
+var first_enemy_encounter = false
+
 var runtime_id = 1000
 var dialogue = preload("res://dialogues/all_dialogues.dialogue")
-var is_first_dialogue_shown = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
