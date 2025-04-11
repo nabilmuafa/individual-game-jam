@@ -57,6 +57,7 @@ func update_slot_visual(slot_index, item_data):
 
 func remove_item(slot: InventorySlot):
 	inventory.erase(slot.slot_index)
+	emit_signal("hotbar_updated")
 			
 func add_item_to_empty_slot(item: ItemClass, slot: InventorySlot):
 	inventory[slot.slot_index] = [item.item_name, item.item_quantity]

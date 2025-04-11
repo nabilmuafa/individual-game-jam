@@ -26,6 +26,9 @@ func _physics_process(_delta: float) -> void:
 		player_state = "idle"
 		play_anim(last_dir)
 		return
+	elif not player_alive:
+		anim.play("faint")
+		return
 		
 	var direction = Input.get_vector("left", "right", "up", "down")
 	
@@ -44,7 +47,7 @@ func _physics_process(_delta: float) -> void:
 	
 	
 func _process(_delta: float) -> void:
-	if not GameManager.game_started or GameManager.is_movement_disabled:
+	if not GameManager.game_started or GameManager.is_movement_disabled or not player_alive:
 		return
 		
 	if not is_attacking and Input.is_action_just_pressed("attack"):
@@ -52,7 +55,6 @@ func _process(_delta: float) -> void:
 		
 	if health <= 0:
 		player_alive = false
-		print("YOURE A DEAD MAN")
 		
 	if Input.is_action_just_pressed("interact") and items_in_range.size() > 0:
 		var closest_item = null

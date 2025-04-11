@@ -38,6 +38,14 @@ func initialize_inventory():
 				JsonData.item_data[PlayerInventory.inventory[i][0]]["ItemTexture"]
 				)
 
+
+func reset_inventory_state():
+	var slots = hotbar_slots.get_children() + inventory_slots.get_children()
+	for i in range(slots.size()):
+		if PlayerInventory.inventory.has(i):
+			slots[i].removeFromSlot()
+			PlayerInventory.remove_item(slots[i])
+
 func _on_slot_gui_input(event: InputEvent, slot: InventorySlot):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:

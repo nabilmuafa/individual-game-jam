@@ -17,7 +17,7 @@ script = ExtResource("1_4x332")
 [node name="Inventory" parent="." instance=ExtResource("3_ge073")]
 visible = false
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." node_paths=PackedStringArray("player")]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -32,7 +32,6 @@ value = 100.0
 texture_under = ExtResource("4_8djt5")
 texture_progress = ExtResource("5_da51s")
 script = ExtResource("6_yvdv1")
-player = NodePath("")
 
 [node name="HeartTexture" type="TextureRect" parent="TextureProgressBar"]
 layout_mode = 0
