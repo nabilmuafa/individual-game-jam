@@ -106,7 +106,7 @@ func deal_with_damage():
 	
 	health -= damage
 	if health <= 0:
-		var drop_count = randi_range(1, 4)
+		var drop_count = randi_range(1, 3)
 		for i in range(drop_count):
 			var item_dropped_scene = load("res://scenes/items/"+item_dropped+".tscn")
 			var object_offset = Vector2(randf_range(-20, 20), randf_range(-20, 20))

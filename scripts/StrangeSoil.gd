@@ -16,7 +16,7 @@ func _ready() -> void:
 			item_instance.max_take = GameManager.takenID[drop["item_id"]]
 			$Items.add_child(item_instance)
 	randomize()
-	timer.wait_time = randi_range(8, 13)
+	timer.set_wait_time(randi_range(5, 12))
 	timer.start()
 	
 	$Player.position.y = GameManager.y_pos
@@ -62,11 +62,11 @@ func _on_enemy_spawn_timer_timeout() -> void:
 	var spawn_pos = $Player/Path2D/PathFollow2D/Marker2D.global_position
 	
 	if is_valid_spawn_position(spawn_pos):
-		timer.wait_time = rng.randi_range(8, 13)
+		timer.set_wait_time(rng.randi_range(5, 12))
 		var enemy_instance = enemy.instantiate()
 		enemy_instance.global_position = spawn_pos
 		$EnemyLayer.add_child(enemy_instance)
 	else:
-		timer.wait_time = 0.1
+		timer.set_wait_time(0.1)
 	
 	timer.start()

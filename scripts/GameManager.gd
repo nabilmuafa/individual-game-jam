@@ -14,6 +14,8 @@ var is_first_dialogue_shown = false
 var entered_forest = false
 var found_crystals = false
 var first_enemy_encounter = false
+var boat_dialogue_visited = false
+var boat_visited = false
 
 var takenID = {}
 var entityID = {}
@@ -29,7 +31,11 @@ var runtime_id = 1000
 var dialogue = preload("res://dialogues/all_dialogues.dialogue")
 
 var death_screen = preload("res://scenes/DeathScreen.tscn")
+var win_screen = preload("res://scenes/WinScreen.tscn")
 var main_menu = preload("res://scenes/MainMenuOverlay.tscn")
+var boat_crafting_menu = preload("res://scenes/BoatCraftingMenu.tscn")
+
+var boat_menu_open = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,6 +50,13 @@ func _process(_delta: float) -> void:
 		var death_screen_instance = death_screen.instantiate()
 		death_screen_instance.layer = 27
 		add_child(death_screen_instance)
+		
+
+func player_win():
+	is_movement_disabled = true
+	var win_screen_instance = win_screen.instantiate()
+	win_screen_instance.layer = 27
+	add_child(win_screen_instance)
 	
 	
 func get_runtime_id():
@@ -94,10 +107,17 @@ func _on_dialogue_end(resource):
 	if not game_started:
 		game_started = true
 	is_movement_disabled = false
+	if not boat_dialogue_visited and boat_visited:
+		boat_dialogue_visited = true
+		open_boat_crafting_menu()
 
+
+func open_boat_crafting_menu():
+	if not boat_menu_open:
+		var boat_crafting_menu_instance = boat_crafting_menu.instantiate()
+		add_child(boat_crafting_menu_instance)
 	
 # Audio Functions
-
 
 func enemy_hit():
 	$AudioStreamPlayerEnemyHit.play()

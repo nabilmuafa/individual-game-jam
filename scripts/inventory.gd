@@ -132,7 +132,7 @@ func check_craftability():
 	var isStickTaken = false
 	var stoneAmount = 0
 	var woodAmount = 0
-	var metalAmount = 0
+	var crystalAmount = 0
 	
 	for item in PlayerInventory.inventory:
 		if PlayerInventory.inventory[item][0] == "Stick":
@@ -141,12 +141,12 @@ func check_craftability():
 			woodAmount += PlayerInventory.inventory[item][1]
 		if PlayerInventory.inventory[item][0] == "Stone":
 			stoneAmount += PlayerInventory.inventory[item][1]
-		if PlayerInventory.inventory[item][0] == "Metal":
-			metalAmount += PlayerInventory.inventory[item][1]
+		if PlayerInventory.inventory[item][0] == "Crystal":
+			crystalAmount += PlayerInventory.inventory[item][1]
 	
 	canCraftPickaxe = (stoneAmount >= 3) and (woodAmount >= 4)
 	canCraftClub = isStickTaken and (woodAmount >= 8)
-	canCraftSword = isStickTaken and (stoneAmount >= 2) and (metalAmount >= 4)
+	canCraftSword = isStickTaken and (stoneAmount >= 2) and (crystalAmount >= 4)
 	
 	pickaxe_craft_button.disabled = !canCraftPickaxe
 	club_craft_button.disabled = !canCraftClub

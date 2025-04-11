@@ -23,3 +23,8 @@ The Protagonist: HELLOOOO! HELP ME!
 The Protagonist: Are these...crystals?
 The Protagonist: Yeah, I can definitely use these to replace metal for my escape boat! I just have to mine them.
 => END
+
+~ broken_boat
+The Protagonist: Hmm, looks like someone else has been stranded here before too.
+The Protagonist: If I have the resources, I can repair this boat and use this to escape the island.
+=> END
