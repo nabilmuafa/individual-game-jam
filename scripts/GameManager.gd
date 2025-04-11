@@ -6,6 +6,8 @@ extends Node
 @onready var thunderAudio = $AudioStreamPlayerThunder
 @onready var whooshAudio = $AudioStreamPlayerWhoosh
 
+signal health_changed
+
 var game_started = false
 var is_movement_disabled = true
 
@@ -24,6 +26,7 @@ var is_first_dialogue_shown = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	player_health = 100
+	PlayerInventory.inventory_layer = $UILayer
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,6 +43,7 @@ func game_start():
 	DialogueManager.dialogue_ended.connect(_on_dialogue_end)
 	is_first_dialogue_shown = true
 	show_dialogue("game_start")
+	emit_signal("health_changed")
 	
 
 func show_dialogue(name: String):
@@ -48,6 +52,8 @@ func show_dialogue(name: String):
 
 
 func _on_dialogue_end(resource):
+	if $UILayer.visible == false:
+		$UILayer.visible = true
 	if not game_started:
 		game_started = true
 	is_movement_disabled = false

@@ -5,8 +5,6 @@ extends CharacterBody2D
 @onready var attack_anim = $AttackSweep
 @onready var walk_audio = $AudioStreamPlayer2D
 
-signal healthChanged
-
 var player_state
 var is_attacking = false
 var last_dir = "e"
@@ -19,7 +17,6 @@ var items_in_range: Array = []
 func _ready() -> void:
 	health = GameManager.player_health
 	last_dir = GameManager.last_dir
-	PlayerInventory.inventory_layer = $UILayer
 
 
 func _physics_process(_delta: float) -> void:
@@ -47,13 +44,8 @@ func _physics_process(_delta: float) -> void:
 	
 	
 func _process(_delta: float) -> void:
-	if not GameManager.game_started:
+	if not GameManager.game_started or GameManager.is_movement_disabled:
 		return
-	elif GameManager.is_movement_disabled:
-		$UILayer.visible = true
-		return
-	else:
-		$UILayer.visible = true
 		
 	if not is_attacking and Input.is_action_just_pressed("attack"):
 		start_attack()
@@ -123,7 +115,7 @@ func enemy_attack():
 	health -= 20
 	GameManager.player_health -= 20
 	GameManager.player_hit()
-	emit_signal("healthChanged")
+	GameManager.emit_signal("health_changed")
 	
 
 func register_item(item: Node2D) -> void:

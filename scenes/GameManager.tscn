@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://p3bogahm3kvc"]
+[gd_scene load_steps=11 format=3 uid="uid://p3bogahm3kvc"]
 
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="1_ytqp7"]
 [ext_resource type="AudioStream" uid="uid://banhxyr5lv8cs" path="res://assets/Custom Assets/rain.mp3" id="2_5k1ge"]
 [ext_resource type="PackedScene" uid="uid://chikaltpp5ht" path="res://scenes/MainMenuOverlay.tscn" id="2_23ab4"]
+[ext_resource type="PackedScene" uid="uid://b7b2lwr2vrm2g" path="res://scenes/UILayer.tscn" id="2_q0qtu"]
 [ext_resource type="AudioStream" uid="uid://cuy7i46p1oa1c" path="res://assets/Custom Assets/Thunder_Edit.wav" id="3_3utnf"]
 [ext_resource type="AudioStream" uid="uid://dqdnh7tianmvx" path="res://assets/Ninja Adventure - Asset Pack/Audio/Sounds/Whoosh.wav" id="4_05thd"]
 [ext_resource type="AudioStream" uid="uid://c8d3lcpymi3r7" path="res://assets/Ninja Adventure - Asset Pack/Audio/Sounds/Sword2.wav" id="5_3ldkc"]
@@ -12,6 +13,9 @@
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_ytqp7")
+
+[node name="UILayer" parent="." instance=ExtResource("2_q0qtu")]
+visible = false
 
 [node name="MainMenuOverlay" parent="." instance=ExtResource("2_23ab4")]
 
