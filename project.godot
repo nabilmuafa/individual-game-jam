@@ -22,6 +22,10 @@ PlayerInventory="*res://scripts/PlayerInventory.gd"
 GameManager="*res://scenes/GameManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[dialogue_manager]
+
+runtime/balloon_path="res://dialogues/balloon.tscn"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
