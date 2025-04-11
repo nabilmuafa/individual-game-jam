@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://chikaltpp5ht"]
 
 [ext_resource type="FontFile" uid="uid://cwp6uh1c8a8yg" path="res://assets/Fonts/managore-m5x7.ttf" id="1_0xks6"]
-[ext_resource type="Script" path="res://scenes/MainMenu.gd" id="1_mnqkp"]
+[ext_resource type="Script" path="res://scripts/MainMenu.gd" id="1_mnqkp"]
 
 [sub_resource type="Animation" id="Animation_wtcxa"]
 length = 0.001

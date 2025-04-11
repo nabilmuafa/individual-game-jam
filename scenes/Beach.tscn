@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Beach.gd" id="1_86jxt"]
 [ext_resource type="Texture2D" uid="uid://bxyeulwk64sqa" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloor.png" id="1_o8k7s"]
-[ext_resource type="Texture2D" uid="uid://oj3wa4ckb2yi" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloorB.png" id="2_ftkyh"]
+[ext_resource type="Texture2D" uid="uid://d1tla5tqjk6mk" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloorB.png" id="2_ftkyh"]
 [ext_resource type="Texture2D" uid="uid://biy42spbg3wul" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetFloorDetail.png" id="3_rrgcm"]
 [ext_resource type="Texture2D" uid="uid://clf5gptfnr6e1" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetNature.png" id="4_47k7u"]
 [ext_resource type="Texture2D" uid="uid://bhf5oxymeae7j" path="res://assets/Ninja Adventure - Asset Pack/Backgrounds/Tilesets/TilesetWater.png" id="5_iby6d"]
