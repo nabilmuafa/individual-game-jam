@@ -6,6 +6,7 @@ extends Node
 @onready var thunderAudio = $AudioStreamPlayerThunder
 @onready var whooshAudio = $AudioStreamPlayerWhoosh
 
+@warning_ignore("unused_signal")
 signal health_changed
 
 var game_started = false
@@ -96,12 +97,13 @@ func reset_game_state():
 	var main_menu_instance = main_menu.instantiate()
 	add_child(main_menu_instance)
 
-func show_dialogue(name: String):
+func show_dialogue(dialogue_name: String):
 	is_movement_disabled = true
-	var dialogue_line = await DialogueManager.show_dialogue_balloon(dialogue, name)
+	@warning_ignore("redundant_await")
+	await DialogueManager.show_dialogue_balloon(dialogue, dialogue_name)
 
 
-func _on_dialogue_end(resource):
+func _on_dialogue_end(_resource):
 	if $UILayer.visible == false:
 		$UILayer.visible = true
 	if not game_started:
