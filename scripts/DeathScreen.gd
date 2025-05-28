@@ -8,7 +8,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
@@ -17,5 +17,5 @@ func _on_link_button_pressed() -> void:
 	queue_free()
 	
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	$MarginContainer/HBoxContainer/VBoxContainer/LinkButton.disabled = false

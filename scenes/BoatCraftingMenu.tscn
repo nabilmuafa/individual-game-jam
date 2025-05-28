@@ -55,17 +55,17 @@ columns = 3
 [node name="ItemDisplay" parent="TextureRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_5brl4")]
 layout_mode = 2
 size_flags_horizontal = 4
-item_quantity = 80
+item_quantity = "80"
 item_name = "Wood"
 
 [node name="ItemDisplay2" parent="TextureRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_5brl4")]
 layout_mode = 2
-item_quantity = 24
+item_quantity = "24"
 item_name = "Crystal"
 
 [node name="ItemDisplay3" parent="TextureRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_5brl4")]
 layout_mode = 2
-item_quantity = 12
+item_quantity = "12"
 item_name = "Stone"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer/VBoxContainer"]

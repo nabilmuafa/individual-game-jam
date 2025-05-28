@@ -151,30 +151,33 @@ layout_mode = 2
 text = "Response example"
 
 [node name="TextureRect" type="TextureRect" parent="Balloon"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 425.0
-offset_right = 1132.0
-offset_bottom = 628.0
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -555.5
+offset_top = -223.0
+offset_right = 555.5
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
 texture = ExtResource("4_ouwfg")
 
-[node name="Dialogue" type="MarginContainer" parent="Balloon"]
+[node name="Dialogue" type="MarginContainer" parent="Balloon/TextureRect"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 23.0
-offset_top = 414.0
-offset_right = 16.0
-offset_bottom = 414.0
+offset_top = -10.0
+offset_bottom = 132.0
 grow_horizontal = 2
-grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Dialogue"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon/TextureRect/Dialogue"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer"]
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/TextureRect/Dialogue/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 1
@@ -187,14 +190,13 @@ text = "Character"
 fit_content = true
 scroll_active = false
 
-[node name="DialogueLabel" parent="Balloon/Dialogue/VBoxContainer" instance=ExtResource("2_a8ve6")]
+[node name="DialogueLabel" parent="Balloon/TextureRect/Dialogue/VBoxContainer" instance=ExtResource("2_a8ve6")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.0784314, 0.105882, 0.105882, 1)
 theme_override_fonts/normal_font = ExtResource("2_rycbc")
 theme_override_font_sizes/normal_font_size = 40
-text = "Dialogue..."
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Panel/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
