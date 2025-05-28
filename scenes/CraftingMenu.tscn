@@ -74,12 +74,12 @@ text = "Craft"
 [node name="ItemDisplay" parent="GridContainer/MarginContainer" instance=ExtResource("8_vwea2")]
 layout_mode = 2
 size_flags_vertical = 4
-item_quantity = 3
+item_quantity = "3"
 item_name = "Stone"
 
 [node name="ItemDisplay2" parent="GridContainer/MarginContainer" instance=ExtResource("8_vwea2")]
 layout_mode = 2
-item_quantity = 4
+item_quantity = "4"
 item_name = "Wood"
 
 [node name="MarginContainer2" type="HBoxContainer" parent="GridContainer"]
@@ -116,12 +116,12 @@ text = "Craft"
 
 [node name="ItemDisplay" parent="GridContainer/MarginContainer2" instance=ExtResource("8_vwea2")]
 layout_mode = 2
-item_quantity = 1
+item_quantity = "1"
 item_name = "Stick"
 
 [node name="ItemDisplay2" parent="GridContainer/MarginContainer2" instance=ExtResource("8_vwea2")]
 layout_mode = 2
-item_quantity = 8
+item_quantity = "8"
 item_name = "Wood"
 
 [node name="MarginContainer3" type="HBoxContainer" parent="GridContainer"]
@@ -157,17 +157,17 @@ text = "Craft"
 
 [node name="ItemDisplay" parent="GridContainer/MarginContainer3" instance=ExtResource("8_vwea2")]
 layout_mode = 2
-item_quantity = 1
+item_quantity = "1"
 item_name = "Stick"
 
 [node name="ItemDisplay2" parent="GridContainer/MarginContainer3" instance=ExtResource("8_vwea2")]
 layout_mode = 2
-item_quantity = 2
+item_quantity = "2"
 item_name = "Stone"
 
 [node name="ItemDisplay3" parent="GridContainer/MarginContainer3" instance=ExtResource("8_vwea2")]
 layout_mode = 2
-item_quantity = 4
+item_quantity = "4"
 item_name = "Crystal"
 
 [connection signal="pressed" from="GridContainer/MarginContainer/PickaxeCraftButton" to="." method="_on_pickaxe_craft_button_pressed"]

@@ -116,6 +116,7 @@ func open_boat_crafting_menu():
 	if not boat_menu_open:
 		var boat_crafting_menu_instance = boat_crafting_menu.instantiate()
 		add_child(boat_crafting_menu_instance)
+		show_objective_hud()
 		
 func screen_flash():
 	var shader_material = $UILayer/DamageFlashing.material
@@ -130,6 +131,13 @@ func screen_flash():
 	fade_flash_tween.tween_method(set_multiplier, 0.1, 1.0, 0.5)
 	await fade_flash_tween.finished
 	
+func update_objective_hud():
+	$UILayer/ObjectiveHUD.update_label()
+	
+func show_objective_hud():
+	$UILayer/ObjectiveHUD.visible = true
+	update_objective_hud()
+
 # Audio Functions
 
 func enemy_hit():

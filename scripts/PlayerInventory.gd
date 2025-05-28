@@ -23,6 +23,7 @@ func add_item(item_name, item_quantity):
 				inventory[item][1] += item_quantity
 				update_slot_visual(item, inventory[item])
 				emit_signal("hotbar_updated")
+				GameManager.update_objective_hud()
 				return
 			else:
 				inventory[item][1] += able_to_add
@@ -34,6 +35,7 @@ func add_item(item_name, item_quantity):
 			inventory[i] = [item_name, item_quantity]
 			update_slot_visual(i, inventory[i])
 			emit_signal("hotbar_updated")
+			GameManager.update_objective_hud()
 			return
 			
 func update_slot_visual(slot_index, item_data):
@@ -55,20 +57,24 @@ func update_slot_visual(slot_index, item_data):
 
 func remove_item(slot: InventorySlot):
 	inventory.erase(slot.slot_index)
+	GameManager.update_objective_hud()
 	emit_signal("hotbar_updated")
 			
 func add_item_to_empty_slot(item: ItemClass, slot: InventorySlot):
 	inventory[slot.slot_index] = [item.item_name, item.item_quantity]
+	GameManager.update_objective_hud()
 	emit_signal("hotbar_updated")
 	
 func add_item_quantity(slot: InventorySlot, quantity_to_add: int):
 	inventory[slot.slot_index][1] += quantity_to_add
+	GameManager.update_objective_hud()
 	emit_signal("hotbar_updated")
 	
 func dec_item_quantity(slot: InventorySlot, quantity: int):
 	inventory[slot.slot_index][1] -= quantity
 	if inventory[slot.slot_index][1] <= 0:
 		inventory.erase(slot.slot_index)
+	GameManager.update_objective_hud()
 	emit_signal("hotbar_updated")
 	
 func active_item_scroll_up():

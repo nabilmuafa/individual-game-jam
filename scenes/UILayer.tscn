@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7b2lwr2vrm2g"]
+[gd_scene load_steps=11 format=3 uid="uid://b7b2lwr2vrm2g"]
 
 [ext_resource type="Script" path="res://scripts/InventoryLayer.gd" id="1_4x332"]
 [ext_resource type="PackedScene" uid="uid://dnnrxr3vrvodr" path="res://scenes/inventory/hotbar.tscn" id="2_ydoo5"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/HealthBar.gd" id="6_yvdv1"]
 [ext_resource type="Texture2D" uid="uid://lrxtdae7fekq" path="res://assets/Custom Assets/Heart.png" id="7_eyg36"]
 [ext_resource type="Shader" path="res://scripts/ScreenRedFlash.gdshader" id="8_rlpjo"]
+[ext_resource type="PackedScene" uid="uid://cdth0skuroa1n" path="res://scenes/ObjectiveHUD.tscn" id="9_g38v4"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2dld2"]
 shader = ExtResource("8_rlpjo")
@@ -56,3 +57,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="ObjectiveHUD" parent="." instance=ExtResource("9_g38v4")]
+visible = false
+mouse_filter = 2
