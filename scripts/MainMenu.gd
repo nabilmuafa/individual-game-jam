@@ -23,12 +23,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	GameManager.game_start()
 	if anim_name == "fade_out":
 		queue_free()
-
-
-func _on_full_screen_pressed() -> void:
-	var mode := DisplayServer.window_get_mode()
-	var is_window: bool = mode != DisplayServer.WINDOW_MODE_FULLSCREEN
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if is_window else DisplayServer.WINDOW_MODE_WINDOWED)
-	var enable_disable = "Disable" if is_window else "Enable"
-	full_screen_btn.text = enable_disable + " Full Screen"
 	
