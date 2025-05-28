@@ -1,6 +1,8 @@
 extends Node
 
+@warning_ignore("unused_signal")
 signal active_item_updated
+@warning_ignore("unused_signal")
 signal hotbar_updated
 
 const INVENTORY_SLOTS = 24

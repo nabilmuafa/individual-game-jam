@@ -75,11 +75,12 @@ curve_z = SubResource("Curve_2w7qg")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_luik0"]
 particle_flag_disable_z = true
-emission_shape_offset = Vector3(400, -202.63, 0)
+emission_shape_offset = Vector3(1250, -200, 0)
 emission_shape = 3
-emission_box_extents = Vector3(1000, 1, 1)
+emission_box_extents = Vector3(2000, 1, 1)
 gravity = Vector3(0, 3000, 0)
 scale_min = 0.2
+scale_max = 1.5
 scale_over_velocity_curve = SubResource("CurveXYZTexture_sc6ry")
 color_initial_ramp = SubResource("GradientTexture1D_cgkox")
 alpha_curve = SubResource("CurveTexture_kxcdm")
@@ -89,10 +90,11 @@ layer = 25
 script = ExtResource("1_pljef")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 1921.0
-offset_bottom = 1081.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 0.423529)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -102,10 +104,11 @@ libraries = {
 
 [node name="ThunderOverlay" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = -8.0
-offset_top = -5.0
-offset_right = 1914.0
-offset_bottom = 1077.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
@@ -113,9 +116,10 @@ autostart = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(582, 168)
-amount = 1000
+amount = 3000
 process_material = SubResource("ParticleProcessMaterial_luik0")
+lifetime = 1.4
 preprocess = 0.5
-visibility_rect = Rect2(-650, -200, 2000, 1120)
+visibility_rect = Rect2(-650, -200, 3840, 2160)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
