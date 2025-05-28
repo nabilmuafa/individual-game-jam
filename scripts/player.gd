@@ -114,10 +114,20 @@ func start_attack():
 
 
 func enemy_attack():
-	health -= 20
-	GameManager.player_health -= 20
-	GameManager.player_hit()
-	GameManager.emit_signal("health_changed")
+	if player_alive:
+		GameManager.screen_flash()
+		GameManager.player_hit()
+		
+		var camera = get_node_or_null("Camera2D")
+		if camera != null:
+			camera.shake(4.0, 8.0)
+		anim.material.set_shader_parameter("flash_strength", 0.5)
+		await get_tree().create_timer(0.1).timeout
+		anim.material.set_shader_parameter("flash_strength", 0.0)
+		
+		health -= 20
+		GameManager.player_health -= 20
+		GameManager.emit_signal("health_changed")
 	
 
 func register_item(item: Node2D) -> void:

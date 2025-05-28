@@ -116,6 +116,19 @@ func open_boat_crafting_menu():
 	if not boat_menu_open:
 		var boat_crafting_menu_instance = boat_crafting_menu.instantiate()
 		add_child(boat_crafting_menu_instance)
+		
+func screen_flash():
+	var shader_material = $UILayer/DamageFlashing.material
+	var set_multiplier = func(value):
+		shader_material.set_shader_parameter("multiplier", value)
+	
+	var flash_tween = create_tween()
+	flash_tween.tween_method(set_multiplier, 1.0, 0.1, 0.25)
+	await flash_tween.finished
+	
+	var fade_flash_tween = create_tween()
+	fade_flash_tween.tween_method(set_multiplier, 0.1, 1.0, 0.5)
+	await fade_flash_tween.finished
 	
 # Audio Functions
 

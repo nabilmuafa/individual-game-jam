@@ -1,12 +1,17 @@
-[gd_scene load_steps=41 format=3 uid="uid://mrl4nnyfj74o"]
+[gd_scene load_steps=43 format=3 uid="uid://mrl4nnyfj74o"]
 
 [ext_resource type="Texture2D" uid="uid://braain5qjeri2" path="res://assets/Ninja Adventure - Asset Pack/Actor/Characters/Boy/SeparateAnim/Idle.png" id="1_d0v5m"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_scom0"]
+[ext_resource type="Shader" path="res://scripts/RedFlash.gdshader" id="2_hamg8"]
 [ext_resource type="Texture2D" uid="uid://byra63xhmrw2p" path="res://assets/Ninja Adventure - Asset Pack/Actor/Characters/Boy/SeparateAnim/Walk.png" id="2_r3yjo"]
 [ext_resource type="Texture2D" uid="uid://bcng4mekfpwfe" path="res://assets/Ninja Adventure - Asset Pack/Actor/Characters/Boy/SeparateAnim/Attack.png" id="2_tfff6"]
 [ext_resource type="Texture2D" uid="uid://f6ifaxnru7jj" path="res://assets/Ninja Adventure - Asset Pack/Actor/Characters/Boy/SeparateAnim/Dead.png" id="3_2qa67"]
 [ext_resource type="Texture2D" uid="uid://d0cv4oh01jga0" path="res://assets/Ninja Adventure - Asset Pack/FX/SlashFx/SlashCurved/SpriteSheet.png" id="5_570ek"]
 [ext_resource type="AudioStream" uid="uid://b6ispwth8c6yh" path="res://assets/NA_Character Footsteps (Dirt & Grass) - Pack 1/Walk/DIRT - Walk 8.wav" id="13_ia0xg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knqwm"]
+shader = ExtResource("2_hamg8")
+shader_parameter/flash_strength = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2m1a1"]
 atlas = ExtResource("2_tfff6")
@@ -304,6 +309,7 @@ collision_layer = 3
 script = ExtResource("1_scom0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_knqwm")
 sprite_frames = SubResource("SpriteFrames_s1dbv")
 animation = &"faint"
 

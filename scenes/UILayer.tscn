@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7b2lwr2vrm2g"]
+[gd_scene load_steps=10 format=3 uid="uid://b7b2lwr2vrm2g"]
 
 [ext_resource type="Script" path="res://scripts/InventoryLayer.gd" id="1_4x332"]
 [ext_resource type="PackedScene" uid="uid://dnnrxr3vrvodr" path="res://scenes/inventory/hotbar.tscn" id="2_ydoo5"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://b6m02wwot6j8q" path="res://assets/Ninja Adventure - Asset Pack/Ui/Theme/ThemeWood/healthbarProgress.png" id="5_da51s"]
 [ext_resource type="Script" path="res://scripts/HealthBar.gd" id="6_yvdv1"]
 [ext_resource type="Texture2D" uid="uid://lrxtdae7fekq" path="res://assets/Custom Assets/Heart.png" id="7_eyg36"]
+[ext_resource type="Shader" path="res://scripts/ScreenRedFlash.gdshader" id="8_rlpjo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2dld2"]
+shader = ExtResource("8_rlpjo")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/multiplier = 1.0
+shader_parameter/softness = 2.0
 
 [node name="UILayer" type="CanvasLayer"]
 layer = 26
@@ -41,3 +48,11 @@ offset_right = 36.0
 offset_bottom = 35.75
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("7_eyg36")
+
+[node name="DamageFlashing" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2dld2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
